@@ -3,10 +3,11 @@ import './App.css';
 import { useEffect, useState } from 'react';
 
 import GameBoard from './containers/GameBoard';
-import Controls from './components/Controls';
-import Header from './components/Header';
+import Header from './containers/Header';
+import HowToPlayContainer from './containers/HowToPlayContainer';
 
 import consumer from './cable';
+import { gamesUrl } from './urls';
 
 function App() {
   const generateNewDeck = () => {
@@ -57,7 +58,7 @@ function App() {
     cardsToShow: 12
   };
   const [game, setGame] = useState(emptyGame);
-  //const [cardsToShow, setCardsOnBoard] = useState(12);
+  const [showTutorial, setShowTutorial] = useState(false);
 
   const dealCards = () => {
     const cards = game.deck.slice(0, game.cardsToShow);
@@ -90,6 +91,10 @@ function App() {
     return deck.map(card => card.id).join(' ');
   };
 
+  const handleHowToPlay = () => {
+    setShowTutorial(!showTutorial);
+  };
+
   const removeCardsFromGame = selectedCards => {
     const newGame = { ...game };
     newGame.deck = newGame.deck.filter(card => {
@@ -118,7 +123,7 @@ function App() {
       },
       body: JSON.stringify(gameObj)
     };
-    fetch('http://localhost:3000/games/' + game.id, fetchObj);
+    fetch(gamesUrl + game.id, fetchObj);
   };
 
   const generateDeckFromIdString = apiGame => {
@@ -131,7 +136,7 @@ function App() {
   };
 
   const getGameFromDb = () => {
-    fetch('http://localhost:3000/games/')
+    fetch(gamesUrl)
       .then(res => res.json())
       .then(apiGames => {
         const newGame = apiGames[apiGames.length - 1];
@@ -158,7 +163,7 @@ function App() {
       },
       body: JSON.stringify(gameObj)
     };
-    fetch('http://localhost:3000/games/', fetchObj)
+    fetch(gamesUrl, fetchObj)
       .then(res => res.json())
       .then(apiGames => {
         const deck = generateDeckFromIdString(apiGames[0]);
@@ -180,7 +185,7 @@ function App() {
   //     },
   //     body: JSON.stringify(gameObj)
   //   };
-  //   fetch('http://localhost:3000/games/', fetchObj);
+  //   fetch(gamesUrl, fetchObj);
   // };
 
   useEffect(() => {
@@ -190,8 +195,12 @@ function App() {
 
   return (
     <div className='App'>
+      {showTutorial ? (
+        <HowToPlayContainer handleHowToPlay={handleHowToPlay} />
+      ) : null}
       <Header
         handleNewGame={handleNewGame}
+        handleHowToPlay={handleHowToPlay}
         game={game}
         setCardsToShow={setCardsToShow}
       />

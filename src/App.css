@@ -55,6 +55,14 @@
   height: 10em;
 
   background: white;
+
+  -webkit-animation: fadeInSlide 0.2s;
+  animation: fadeInSlide 0.2s;
+}
+
+.spinOut {
+  -webkit-animation: spinOut 0.5s;
+  animation: spinOut 0.5s;
 }
 
 .SetCard:hover {
@@ -123,12 +131,63 @@ svg {
   display: flex;
   justify-content: center;
   align-content: center;
+
+  margin: 1.2em 0;
+}
+
+.header-background {
+  position: absolute;
+  background-color: var(--color-1);
+  width: 100%;
+  height: 7em;
+  z-index: -1;
+
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 .header-content {
   display: flex;
   flex-direction: row;
   align-content: center;
   justify-content: center;
+}
+
+.HowToPlayContainer {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  z-index: 10;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.2) 30px,
+    rgba(0, 0, 0, 0.3) 30px,
+    rgba(0, 0, 0, 0.3) 60px
+  );
+}
+
+.HowToPlay {
+  height: 50vh;
+  width: 50vw;
+  margin: auto;
+  margin-top: 10vh;
+
+  background: white;
+  border-radius: 12px;
+  border: 2px lightgrey solid;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 8px;
+
+  -webkit-animation: fadeInSlide 0.2s;
+  animation: fadeInSlide 0.2s;
+}
+
+.HowToPlay > p {
+  margin: auto;
+  width: 70ch;
 }
 
 .title {
@@ -146,24 +205,14 @@ svg {
   padding: 5px 50px;
   margin: auto 50px;
   transform: rotate(-10deg);
-}
-
-.header-background {
-  position: absolute;
-  background-color: var(--color-1);
-  width: 100%;
-  height: 7em;
-  z-index: -1;
-
-  display: flex;
-  align-content: center;
-  justify-content: center;
+  border: 2px solid var(--color-1);
+  border-radius: 5px;
 }
 
 .background-wing::before {
   position: absolute;
   height: 150%;
-  width: 400px;
+  width: 600px;
   background: var(--color-2);
   content: ' ';
   top: 0;
@@ -171,13 +220,13 @@ svg {
   z-index: -2;
   overflow: hidden;
 
-  transform: rotate(10deg) translate(-100px, -100px);
+  transform: rotate(10deg) translate(-400px, -100px);
 }
 
 .background-wing::after {
   position: absolute;
   height: 150%;
-  width: 400px;
+  width: 600px;
   background: var(--color-3);
   content: ' ';
   top: 0;
@@ -185,7 +234,7 @@ svg {
   z-index: -2;
   overflow: hidden;
 
-  transform: rotate(-10deg) translate(100px, -100px);
+  transform: rotate(-10deg) translate(400px, -100px);
 }
 
 .Controls {
@@ -209,4 +258,39 @@ button {
 
 button:hover {
   transform: rotate(3deg);
+}
+
+@keyframes fadeInSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@-webkit-keyframes fadeInSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes rotateOut {
+  0% {
+    transform-origin: center center;
+    transform: rotate(0);
+    opacity: 1;
+  }
+  100% {
+    transform-origin: center center;
+    transform: rotate(200deg);
+    opacity: 0;
+  }
 }

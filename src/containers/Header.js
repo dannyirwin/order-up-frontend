@@ -1,10 +1,15 @@
 import React from 'react';
-import Controls from './Controls';
-import IconOne from './IconOne';
-import IconTwo from './IconTwo';
-import IconThree from './IconThree';
+import Controls from '../components/Controls';
+import IconOne from '../components/IconOne';
+import IconTwo from '../components/IconTwo';
+import IconThree from '../components/IconThree';
 
-export default function Header({ handleNewGame, game, setCardsToShow }) {
+export default function Header({
+  handleNewGame,
+  game,
+  setCardsToShow,
+  handleHowToPlay
+}) {
   return (
     <header className='Header'>
       <div className='header-background'>
@@ -43,6 +48,7 @@ export default function Header({ handleNewGame, game, setCardsToShow }) {
           handleNewGame={handleNewGame}
           game={game}
           setCardsToShow={setCardsToShow}
+          handleHowToPlay={handleHowToPlay}
         />
       </div>
     </header>
