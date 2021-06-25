@@ -408,3 +408,10 @@ button:hover {
     border-radius: 7px;
   }
 }
+
+.attributing,
+.attributing > a {
+  color: grey;
+  margin-top: auto;
+  bottom: 0;
+}

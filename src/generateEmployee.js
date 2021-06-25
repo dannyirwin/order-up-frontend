@@ -1,4 +1,4 @@
-const adjectives = ['Lazy', 'Tryhard', 'Diligent', 'Speedy'];
+const adjectives = ['Lazy', 'Tryhard', 'Diligent', 'Speedy', 'Bearded'];
 const nouns = [
   'Queer',
   'Hipster',
