@@ -58,7 +58,9 @@ function App() {
     cardsToShow: 12
   };
   const [game, setGame] = useState(emptyGame);
+  const [points, setPoints] = useState(0); //TODO: This will does not work over sockets and will break when you implement it.
   const [showTutorial, setShowTutorial] = useState(false);
+  const [colorblindMode, setColorblindMode] = useState(false);
 
   const dealCards = () => {
     const cards = game.deck.slice(0, game.cardsToShow);
@@ -95,6 +97,20 @@ function App() {
     setShowTutorial(!showTutorial);
   };
 
+  const renderColorBlindMode = () => {
+    const root = document.querySelector(':root');
+    if (colorblindMode) {
+      root.style.setProperty('--color-2', 'rgb(0, 77, 64)');
+      root.style.setProperty('--background-color-2', 'rgba(0, 77, 64, 0.3)');
+    } else {
+      root.style.setProperty('--color-2', 'rgb(233, 63, 111)');
+      root.style.setProperty(
+        '--background-color-2',
+        'rgba(233, 63, 111, 0.3);'
+      );
+    }
+  };
+
   const removeCardsFromGame = selectedCards => {
     const newGame = { ...game };
     newGame.deck = newGame.deck.filter(card => {
@@ -105,6 +121,7 @@ function App() {
       );
     });
     newGame.cardsToShow = 12;
+    setPoints(points + 1);
     setGame(newGame);
     patchToDB(newGame);
     //postToDB(newGame);
@@ -151,6 +168,7 @@ function App() {
   };
 
   const handleNewGame = () => {
+    setPoints(points + 1); //TODO: This will does not work over sockets and will break when you implement that.
     const gameObj = {
       deck: deckToIdString(shuffleDeck(generateNewDeck())),
       cardsToShow: 12
@@ -172,21 +190,9 @@ function App() {
       });
   };
 
-  // const postToDB = newGame => {
-  //   console.log(game.cardsToShow);
-  //   const gameObj = {
-  //     deck: deckToIdString(newGame.deck),
-  //     cardsToShow: newGame.cardsToShow
-  //   };
-  //   const fetchObj = {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(gameObj)
-  //   };
-  //   fetch(gamesUrl, fetchObj);
-  // };
+  const toggleColorblindMode = () => {
+    setColorblindMode(!colorblindMode);
+  };
 
   useEffect(() => {
     getGameFromDb();
@@ -195,6 +201,7 @@ function App() {
 
   return (
     <div className='App'>
+      {renderColorBlindMode()}
       {showTutorial ? (
         <HowToPlayContainer handleHowToPlay={handleHowToPlay} />
       ) : null}
@@ -203,6 +210,8 @@ function App() {
         handleHowToPlay={handleHowToPlay}
         game={game}
         setCardsToShow={setCardsToShow}
+        points={points}
+        toggleColorblindMode={toggleColorblindMode}
       />
       {game.deck.length > 0 ? (
         <GameBoard

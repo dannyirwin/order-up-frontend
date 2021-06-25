@@ -4,7 +4,8 @@ export default function Controls({
   game,
   setCardsToShow,
   handleNewGame,
-  handleHowToPlay
+  handleHowToPlay,
+  toggleColorblindMode
 }) {
   return (
     <div className='Controls'>
@@ -15,6 +16,7 @@ export default function Controls({
       )}
       <button onClick={handleHowToPlay}>How Do I Play?</button>
       <button onClick={handleNewGame}> New Game </button>
+      <button onClick={toggleColorblindMode}>Colorblind Mode</button>
     </div>
   );
 }
