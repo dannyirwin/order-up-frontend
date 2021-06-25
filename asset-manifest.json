@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/order-up-frontend/static/css/main.b7fa7e1f.chunk.css",
-    "main.js": "/order-up-frontend/static/js/main.e083ce98.chunk.js",
-    "main.js.map": "/order-up-frontend/static/js/main.e083ce98.chunk.js.map",
+    "main.css": "/order-up-frontend/static/css/main.25da2d4d.chunk.css",
+    "main.js": "/order-up-frontend/static/js/main.e315749c.chunk.js",
+    "main.js.map": "/order-up-frontend/static/js/main.e315749c.chunk.js.map",
     "runtime-main.js": "/order-up-frontend/static/js/runtime-main.b328b16c.js",
     "runtime-main.js.map": "/order-up-frontend/static/js/runtime-main.b328b16c.js.map",
     "static/js/2.c6028ce9.chunk.js": "/order-up-frontend/static/js/2.c6028ce9.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.b0168ea4.chunk.js": "/order-up-frontend/static/js/3.b0168ea4.chunk.js",
     "static/js/3.b0168ea4.chunk.js.map": "/order-up-frontend/static/js/3.b0168ea4.chunk.js.map",
     "index.html": "/order-up-frontend/index.html",
-    "static/css/main.b7fa7e1f.chunk.css.map": "/order-up-frontend/static/css/main.b7fa7e1f.chunk.css.map",
+    "static/css/main.25da2d4d.chunk.css.map": "/order-up-frontend/static/css/main.25da2d4d.chunk.css.map",
     "static/js/2.c6028ce9.chunk.js.LICENSE.txt": "/order-up-frontend/static/js/2.c6028ce9.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b328b16c.js",
     "static/js/2.c6028ce9.chunk.js",
-    "static/css/main.b7fa7e1f.chunk.css",
-    "static/js/main.e083ce98.chunk.js"
+    "static/css/main.25da2d4d.chunk.css",
+    "static/js/main.e315749c.chunk.js"
   ]
 }
