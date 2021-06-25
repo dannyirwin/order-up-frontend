@@ -1,4 +1,19 @@
-const adjectives = ['Lazy', 'Tryhard', 'Diligent', 'Speedy', 'Bearded'];
+const adjectives = [
+  'Lazy',
+  'Tryhard',
+  'Diligent',
+  'Speedy',
+  'Bearded',
+  'Fancy',
+  'Sassy',
+  'Bored',
+  'Trendy',
+  'Tattooed',
+  'Flirty',
+  'Messy',
+  'Aloof',
+  'Melancholy'
+];
 const nouns = [
   'Queer',
   'Hipster',
@@ -7,7 +22,11 @@ const nouns = [
   'CafeCat',
   'Dishwasher',
   'Hippie',
-  'Rat'
+  'Rat',
+  'Bohemian',
+  'Manager',
+  'Lurker',
+  'CoffeeAddict'
 ];
 
 const generateEmployee = () => {

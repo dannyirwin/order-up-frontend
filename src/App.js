@@ -184,6 +184,7 @@ function App() {
     fetch(gamesUrl, fetchObj)
       .then(res => res.json())
       .then(apiGames => {
+        console.log(apiGames);
         const deck = generateDeckFromIdString(apiGames[0]);
         apiGames[0].deck = deck;
         setGame(apiGames[0]);
