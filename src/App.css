@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
 :root {
-  --color-1: rgb(22, 219, 147);
-  --color-2: rgb(232, 63, 111);
-  --color-3: rgb(34, 116, 165);
+  --color-1: rgb(22, 218, 146);
+  --color-2: rgb(233, 63, 111);
+  --color-3: rgb(34, 117, 165);
 
   --background-color-1: rgba(22, 219, 147, 0.3);
-  --background-color-2: rgba(2232, 63, 111, 0.3);
+  --background-color-2: rgba(233, 63, 111, 0.3);
   --background-color-3: rgba(34, 116, 165, 0.3);
 
   --main-font: 'Fredoka One', cursive;
@@ -26,15 +26,13 @@
 }
 
 .GameBoard {
-  /* display: grid;
-  grid-template-columns: 4fr 4fr 4fr; */
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
   flex-wrap: wrap;
-  gap: none;
-
-  max-height: 40em;
-  max-width: 95em;
+  max-width: 1500px;
+  max-height: 100%;
 
   margin: auto;
 }
@@ -54,6 +52,8 @@
   width: 16em;
   height: 10em;
 
+  max-width: 1500px;
+
   background: white;
 
   -webkit-animation: fadeInSlide 0.2s;
@@ -69,6 +69,7 @@
   transform: scale(1.1) rotate(3deg);
   box-shadow: var(--icon-rgb) 0px 3px 10px;
   transition: 0.1s;
+  cursor: pointer;
 }
 
 .selected {
@@ -112,8 +113,8 @@
 }
 
 svg {
-  height: 3em;
-  width: 3em;
+  height: 3rem;
+  width: 3rem;
   stroke-width: 7px;
   margin: auto 2px;
   padding: 5px;
@@ -171,10 +172,11 @@ svg {
 }
 
 .HowToPlay {
-  height: 50vh;
-  width: 50vw;
+  max-height: 90vh;
+  width: 60vw;
   margin: auto;
-  margin-top: 10vh;
+  padding: 1em;
+  margin-top: 5vh;
 
   background: white;
   border-radius: 12px;
@@ -187,12 +189,20 @@ svg {
 
 .HowToPlay > p {
   margin: auto;
-  width: 70ch;
+  width: 50ch;
+  padding: 5px;
+}
+
+.HowToPlay > button {
+  margin: 1em auto;
 }
 
 .title {
-  display: flex;
+  display: inline;
+  white-space: nowrap;
   border-bottom: solid 5px var(--color-2);
+  padding: 0 10px;
+  cursor: default;
 }
 
 .title > div {
@@ -202,8 +212,8 @@ svg {
 
 .title-container {
   background: white;
-  padding: 5px 50px;
-  margin: auto 50px;
+  padding: 30px;
+  margin: auto 15px;
   transform: rotate(-10deg);
   border: 2px solid var(--color-1);
   border-radius: 5px;
@@ -240,7 +250,6 @@ svg {
 .Controls {
   height: 100%;
   display: flex;
-
   align-content: center;
 }
 
@@ -254,6 +263,8 @@ button {
   transition: 0.1s;
   font-family: var(--main-font);
   font-size: 16px;
+
+  cursor: pointer;
 }
 
 button:hover {
@@ -292,5 +303,108 @@ button:hover {
     transform-origin: center center;
     transform: rotate(200deg);
     opacity: 0;
+  }
+}
+
+.AllExamplesContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.ExamplesContainer {
+  display: flex;
+  flex-direction: row;
+  margin: auto 5px;
+  justify-content: center;
+  max-width: 600%;
+}
+
+.ExampleCard {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+  margin: 0.5em;
+  padding: 0.25em;
+
+  transition: 0.1s;
+
+  background: white;
+  border-radius: 5px;
+  border: 2px lightgrey solid;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 8px;
+
+  -webkit-animation: fadeInSlide 0.2s;
+  animation: fadeInSlide 0.2s;
+}
+
+.example-icon {
+  height: 20px;
+  width: 20px;
+
+  border-width: 2px;
+  border-radius: 5px;
+
+  stroke-width: 25px;
+}
+
+.EmployeeInfo {
+  background: white;
+  display: flex;
+  flex-direction: row;
+  margin: auto 10px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 2px lightgrey solid;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 8px;
+  font-size: 16px;
+}
+
+.EmployeeInfo > div {
+  display: flex;
+  flex-direction: row;
+  margin: auto 5px;
+}
+
+.EmployeeInfo > div > * {
+  margin: auto 5px;
+  cursor: default;
+}
+
+.EmployeeInfo > div > * {
+  margin: auto 5px;
+}
+
+.color-1 {
+  color: var(--color-1);
+}
+
+.color-2 {
+  color: var(--color-2);
+}
+
+.color-3 {
+  color: var(--color-3);
+}
+
+@media only screen and (max-width: 1200px) {
+  button,
+  p {
+    font-size: 12px;
+  }
+
+  .SetCard {
+    width: 12em;
+    height: 8em;
+  }
+
+  svg {
+    height: 2em;
+    width: 2em;
+    border-width: 3px;
+    border-radius: 7px;
   }
 }

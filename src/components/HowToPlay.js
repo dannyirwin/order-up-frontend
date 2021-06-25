@@ -1,4 +1,4 @@
-import React from 'react';
+import AllExamplesContainer from '../containers/AllExamplesContainer';
 
 export default function HowToPlay({ handleHowToPlay }) {
   return (
@@ -20,8 +20,10 @@ export default function HowToPlay({ handleHowToPlay }) {
         attributes must either be all the same or all different across all
         cards.
       </p>
-      <p>Here are some examples of valid orders: </p>
-      <div className='order-example'></div>
+      <p>
+        Select an order by clicking on cards. Click again to de-select a card.
+      </p>
+      <AllExamplesContainer />
       <button onClick={handleHowToPlay}>Go Back To Game</button>
     </div>
   );

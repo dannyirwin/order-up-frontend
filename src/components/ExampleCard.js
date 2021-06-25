@@ -1,4 +1,6 @@
-import React from 'react';
+import IconOne from './IconOne';
+import IconTwo from './IconTwo';
+import IconThree from './IconThree';
 
 export default function ExampleCard({ card }) {
   const { color, fill, shape, count } = card;
@@ -16,13 +18,15 @@ export default function ExampleCard({ card }) {
   const createIconComponent = i => {
     switch (shape) {
       case 'shape-1':
-        return <IconOne className={`${fill}`} key={i} />;
+        return <IconOne className={`${fill} example-icon`} key={i} />;
       case 'shape-2':
-        return <IconTwo className={`${fill}`} key={i} />;
+        return <IconTwo className={`${fill} example-icon`} key={i} />;
       case 'shape-3':
-        return <IconThree className={`${fill}`} key={i} />;
+        return <IconThree className={`${fill} example-icon`} key={i} />;
       default:
-        console.error(`ERROR: no valid input for prop shape. Got: ${shape}`);
+        console.error(
+          `ERROR: no valid input for prop shape. Got: ${shape}. Expected: 'shape-1', 'shape-2', or 'shape-3'`
+        );
         break;
     }
   };
