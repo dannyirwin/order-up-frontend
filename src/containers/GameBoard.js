@@ -18,6 +18,7 @@ export default function GameBoard({ boardCards, removeCardsFromGame }) {
   };
 
   const showBoardCards = () => {
+    console.log(boardCards);
     return boardCards.map(card => {
       return (
         <SetCard
@@ -30,75 +31,22 @@ export default function GameBoard({ boardCards, removeCardsFromGame }) {
     });
   };
 
-  const handleSelectedCards = () => {
-    if (selectedCards.length >= 3) {
-      if (checkIsSet()) {
-        setTimeout(() => {
-          removeCardsFromGame(selectedCards);
-        }, 500);
-      }
-      setTimeout(() => setSelectedCards([]), 500);
-    }
-  };
+  // const handleSelectedCards = () => {
+  //   if (selectedCards.length >= 3) {
+  //     if (checkIsSet()) {
+  //       setTimeout(() => {
+  //         removeCardsFromGame(selectedCards);
+  //       }, 500);
+  //     }
+  //     setTimeout(() => setSelectedCards([]), 500);
+  //   }
+  // };
 
-  const checkIsSet = () => {
-    const cards = selectedCards;
-    const attributes = ['color', 'fill', 'count', 'shape'];
-
-    for (let i in attributes) {
-      //TODO: this is ugly, refactor
-      const attribute = attributes[i];
-      if (
-        cards[0][attribute] === cards[1][attribute] &&
-        cards[0][attribute] !== cards[2][attribute]
-      ) {
-        console.log('Incorrect attribute: ' + attribute);
-        return false;
-      }
-      if (
-        cards[0][attribute] !== cards[1][attribute] &&
-        cards[0][attribute] === cards[2][attribute]
-      ) {
-        console.log('Incorrect attribute: ' + attribute);
-        return false;
-      }
-      if (
-        cards[1][attribute] !== cards[0][attribute] &&
-        cards[1][attribute] === cards[2][attribute]
-      ) {
-        console.log('Incorrect attribute: ' + attribute);
-        return false;
-      }
-      if (
-        cards[1][attribute] === cards[0][attribute] &&
-        cards[1][attribute] !== cards[2][attribute]
-      ) {
-        console.log('Incorrect attribute: ' + attribute);
-        return false;
-      }
-      if (
-        cards[2][attribute] !== cards[1][attribute] &&
-        cards[2][attribute] === cards[0][attribute]
-      ) {
-        console.log('Incorrect attribute: ' + attribute);
-        return false;
-      }
-      if (
-        cards[2][attribute] === cards[1][attribute] &&
-        cards[2][attribute] !== cards[0][attribute]
-      ) {
-        console.log('Incorrect attribute: ' + attribute);
-        return false;
-      }
-    }
-    return true;
-  };
-
-  useEffect(() => {
-    if (selectedCards.length >= 3) {
-      handleSelectedCards();
-    }
-  }, [selectedCards]);
+  // useEffect(() => {
+  //   if (selectedCards.length >= 3) {
+  //     handleSelectedCards();
+  //   }
+  // }, [selectedCards]);
 
   return <div className='GameBoard'>{showBoardCards()}</div>;
 }
