@@ -31,7 +31,6 @@ export default function SetCard({ card, toggleSelectedCard, isSelected }) {
   return (
     <div
       className={`SetCard color-${color + 1} ${isSelected ? 'selected' : ''}`}
-      id={id}
       onClick={() => toggleSelectedCard(card)}
     >
       {showIcons()}

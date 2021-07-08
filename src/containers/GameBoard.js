@@ -18,7 +18,6 @@ export default function GameBoard({ boardCards, removeCardsFromGame }) {
   };
 
   const showBoardCards = () => {
-    console.log(boardCards);
     return boardCards.map(card => {
       return (
         <SetCard
