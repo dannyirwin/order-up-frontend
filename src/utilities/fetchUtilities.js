@@ -1,11 +1,30 @@
 //const baseUrl = 'https://hidden-shelf-20440.herokuapp.com/';
 const baseUrl = 'http://localhost:3000/';
+const gamesUrl = baseUrl + '/games/';
 
-const getAllGamesFromDB = () => {
-  fetch(baseUrl + 'games').then(res => res.json());
+const headers = {
+  'Content-Type': 'application/json',
+  Accept: 'application/json'
 };
+
+const getAllGamesFromDB = async () => {
+  const resp = await fetch(gamesUrl);
+  return await resp.json();
+};
+
 const getGameFromDB = async id => {
-  fetch(baseUrl + 'games/' + id).then(res => res.json());
+  const resp = await fetch(gamesUrl + id);
+  return await resp.json();
 };
 
-export { getAllGamesFromDB, getGameFromDB };
+const updateDB = async (body, id) => {
+  const options = {
+    method: 'PATCH',
+    headers: headers,
+    body: JSON.stringify(body)
+  };
+  const resp = await fetch(gamesUrl + id, options);
+  return await resp.json();
+};
+
+export { getAllGamesFromDB, getGameFromDB, updateDB };

@@ -1,15 +1,16 @@
+import { updateDB } from '../utilities/fetchUtilities';
+
 export default function Controls({
   game,
   handleNewGame,
   handleHowToPlay,
-  toggleColorblindMode,
-  updateDB
+  toggleColorblindMode
 }) {
   const add3Cards = () => {
     const body = {
       method: 'add_cards'
     };
-    updateDB(body).then(console.log);
+    updateDB(body, game.id);
   };
 
   return game?.board ? (

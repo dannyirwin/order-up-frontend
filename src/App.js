@@ -1,6 +1,7 @@
 import './App.css';
 
 import { useEffect, useState } from 'react';
+import { getGameFromDB } from './utilities/fetchUtilities';
 
 import GameBoard from './containers/GameBoard';
 import Header from './containers/Header';
@@ -9,25 +10,26 @@ import Attribution from './components/Attribution';
 
 import consumer from './cable';
 
-const headers = {
-  'Content-Type': 'application/json',
-  Accept: 'application/json'
-};
-
 function App() {
   const [game, setGame] = useState({});
   const [points, setPoints] = useState(0); //TODO: This will does not work over sockets and will break when you implement it.
   const [showTutorial, setShowTutorial] = useState(false);
   const [colorblindMode, setColorblindMode] = useState(false);
 
-  const gameId = 27; //TODO: THis will change
+  const gameIds = [1, 2];
+
+  const gameId = gameIds[Math.floor(Math.random() * 2)];
 
   const createSubscription = () => {
     consumer.subscriptions.create(
-      { channel: 'GamesChannel' },
       {
-        received: game => {
-          setGame(game);
+        channel: 'GamesChannel',
+        game_id: gameId
+      },
+      {
+        received: gameData => {
+          console.log(gameData);
+          setGame(gameData);
         }
       }
     );
@@ -55,30 +57,9 @@ function App() {
     setColorblindMode(!colorblindMode);
   };
 
-  const baseUrl = 'http://localhost:3000/';
-
-  // const getAllGamesFromDB = () => {
-  //   fetch(baseUrl + 'games').then(res => res.json());
-  // };
-  const getGameFromDB = id => {
-    fetch(baseUrl + 'games/' + id)
-      .then(res => res.json())
-      .then(gameData => setGame(gameData));
-  };
-
-  const updateDB = async body => {
-    const options = {
-      method: 'PATCH',
-      headers: headers,
-      body: JSON.stringify(body)
-    };
-    const resp = await fetch(baseUrl + 'games/' + game.id, options);
-    return await resp.json();
-  };
-
   useEffect(() => {
     createSubscription();
-    getGameFromDB(gameId);
+    getGameFromDB(gameId).then(setGame);
   }, []);
 
   return (
@@ -89,13 +70,12 @@ function App() {
       ) : null}
       <Header
         handleHowToPlay={handleHowToPlay}
-        updateDB={updateDB}
         game={game}
         points={points}
         toggleColorblindMode={toggleColorblindMode}
       />
       {game.board ? (
-        <GameBoard boardCards={game.board} updateDB={updateDB} />
+        <GameBoard boardCards={game.board} gameId={game.id} />
       ) : null}
       <div className='background-wing'></div>
       <Attribution />
