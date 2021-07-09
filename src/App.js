@@ -5,12 +5,14 @@ import { useEffect, useState } from 'react';
 import GameBoard from './containers/GameBoard';
 import Header from './containers/Header';
 import HowToPlayContainer from './containers/HowToPlayContainer';
+import Attribution from './components/Attribution';
 
 import consumer from './cable';
-import {
-  getAllGamesFromDB,
-  getGameFromDB
-} from './utilities/fetchUtilities.js';
+
+const headers = {
+  'Content-Type': 'application/json',
+  Accept: 'application/json'
+};
 
 function App() {
   const [game, setGame] = useState({});
@@ -18,19 +20,18 @@ function App() {
   const [showTutorial, setShowTutorial] = useState(false);
   const [colorblindMode, setColorblindMode] = useState(false);
 
-  // const createSubscription = () => {
-  //   consumer.subscriptions.create(
-  //     { channel: 'GamesChannel' },
-  //     {
-  //       received: game => {
-  //         if (typeof game.deck === 'string') {
-  //           game.deck = generateDeckFromIdString(game);
-  //         }
-  //         setGame(game);
-  //       }
-  //     }
-  //   );
-  // };
+  const gameId = 27; //TODO: THis will change
+
+  const createSubscription = () => {
+    consumer.subscriptions.create(
+      { channel: 'GamesChannel' },
+      {
+        received: game => {
+          setGame(game);
+        }
+      }
+    );
+  };
 
   const handleHowToPlay = () => {
     setShowTutorial(!showTutorial);
@@ -56,18 +57,28 @@ function App() {
 
   const baseUrl = 'http://localhost:3000/';
 
-  const getAllGamesFromDB = () => {
-    fetch(baseUrl + 'games').then(res => res.json());
-  };
+  // const getAllGamesFromDB = () => {
+  //   fetch(baseUrl + 'games').then(res => res.json());
+  // };
   const getGameFromDB = id => {
     fetch(baseUrl + 'games/' + id)
       .then(res => res.json())
       .then(gameData => setGame(gameData));
   };
 
+  const updateDB = async body => {
+    const options = {
+      method: 'PATCH',
+      headers: headers,
+      body: JSON.stringify(body)
+    };
+    const resp = await fetch(baseUrl + 'games/' + game.id, options);
+    return await resp.json();
+  };
+
   useEffect(() => {
-    //createSubscription();
-    getGameFromDB(26);
+    createSubscription();
+    getGameFromDB(gameId);
   }, []);
 
   return (
@@ -78,22 +89,16 @@ function App() {
       ) : null}
       <Header
         handleHowToPlay={handleHowToPlay}
+        updateDB={updateDB}
         game={game}
         points={points}
         toggleColorblindMode={toggleColorblindMode}
       />
-      {game.board ? <GameBoard boardCards={game.board} /> : null}
+      {game.board ? (
+        <GameBoard boardCards={game.board} updateDB={updateDB} />
+      ) : null}
       <div className='background-wing'></div>
-      <div className='attributing'>
-        Icons made by{' '}
-        <a href='https://www.freepik.com' title='Freepik'>
-          Freepik
-        </a>{' '}
-        from{' '}
-        <a href='https://www.flaticon.com/' title='Flaticon'>
-          www.flaticon.com
-        </a>
-      </div>
+      <Attribution />
     </div>
   );
 }

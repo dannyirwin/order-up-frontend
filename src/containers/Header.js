@@ -11,7 +11,8 @@ export default function Header({
   setCardsToShow,
   handleHowToPlay,
   points,
-  toggleColorblindMode
+  toggleColorblindMode,
+  updateDB
 }) {
   return (
     <header className='Header'>
@@ -52,6 +53,7 @@ export default function Header({
           setCardsToShow={setCardsToShow}
           handleHowToPlay={handleHowToPlay}
           toggleColorblindMode={toggleColorblindMode}
+          updateDB={updateDB}
         />
       </div>
     </header>

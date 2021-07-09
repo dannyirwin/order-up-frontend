@@ -1,16 +1,21 @@
-import { useState } from 'react';
-
 export default function Controls({
   game,
-  setCardsToShow,
   handleNewGame,
   handleHowToPlay,
-  toggleColorblindMode
+  toggleColorblindMode,
+  updateDB
 }) {
-  return (
+  const add3Cards = () => {
+    const body = {
+      method: 'add_cards'
+    };
+    updateDB(body).then(console.log);
+  };
+
+  return game?.board ? (
     <div className='Controls'>
-      {game.cardsToShow < 15 ? (
-        <button onClick={() => setCardsToShow(15)}>3 More Cards</button>
+      {game.board.length < 15 ? (
+        <button onClick={add3Cards}>3 More Cards</button>
       ) : (
         <button disabled> + 3 More Cards</button>
       )}
@@ -18,5 +23,5 @@ export default function Controls({
       <button onClick={handleNewGame}> New Game </button>
       <button onClick={toggleColorblindMode}>Colorblind Mode</button>
     </div>
-  );
+  ) : null;
 }

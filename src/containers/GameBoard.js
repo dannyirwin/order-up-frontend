@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import SetCard from '../components/SetCard';
 
-export default function GameBoard({ boardCards, removeCardsFromGame }) {
+export default function GameBoard({ boardCards, updateDB }) {
   const [selectedCards, setSelectedCards] = useState([]);
 
   const toggleSelectedCard = card => {
@@ -30,22 +30,20 @@ export default function GameBoard({ boardCards, removeCardsFromGame }) {
     });
   };
 
-  // const handleSelectedCards = () => {
-  //   if (selectedCards.length >= 3) {
-  //     if (checkIsSet()) {
-  //       setTimeout(() => {
-  //         removeCardsFromGame(selectedCards);
-  //       }, 500);
-  //     }
-  //     setTimeout(() => setSelectedCards([]), 500);
-  //   }
-  // };
+  const handleSelectedCards = () => {
+    if (selectedCards.length >= 3) {
+      const body = {
+        cards: [selectedCards[0], selectedCards[1], selectedCards[2]]
+      };
+      updateDB(body).then(console.log);
+    }
+  };
 
-  // useEffect(() => {
-  //   if (selectedCards.length >= 3) {
-  //     handleSelectedCards();
-  //   }
-  // }, [selectedCards]);
+  useEffect(() => {
+    if (selectedCards.length >= 3) {
+      handleSelectedCards();
+    }
+  }, [selectedCards]);
 
   return <div className='GameBoard'>{showBoardCards()}</div>;
 }

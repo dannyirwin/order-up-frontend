@@ -4,7 +4,7 @@ const baseUrl = 'http://localhost:3000/';
 const getAllGamesFromDB = () => {
   fetch(baseUrl + 'games').then(res => res.json());
 };
-const getGameFromDB = id => {
+const getGameFromDB = async id => {
   fetch(baseUrl + 'games/' + id).then(res => res.json());
 };
 
