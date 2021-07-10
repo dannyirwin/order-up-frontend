@@ -23,8 +23,13 @@ export default function HowToPlay({ handleHowToPlay }) {
       <p>
         Select an order by clicking on cards. Click again to de-select a card.
       </p>
+      <p>
+        If you are stumped, you can add 3 cards (up to a total of 15) by
+        clicking the "Add 3 Cards" in the top.
+      </p>
+      <h3>Good Luck!</h3>
       <AllExamplesContainer />
-      <button onClick={handleHowToPlay}>Go Back To Game</button>
+      <button onClick={handleHowToPlay}>Go Back</button>
     </div>
   );
 }

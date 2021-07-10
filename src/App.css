@@ -189,7 +189,7 @@ svg {
 
 .HowToPlay > p {
   margin: auto;
-  width: 50ch;
+  width: 70ch;
   padding: 5px;
 }
 
@@ -253,7 +253,8 @@ svg {
   align-content: center;
 }
 
-button {
+button,
+input[type='submit'] {
   margin: auto 5px;
   padding: 10px;
   background-color: white;
@@ -414,4 +415,21 @@ button:hover {
   color: grey;
   margin-top: auto;
   bottom: 0;
+}
+
+.menu-card {
+  background-color: white;
+  border-radius: 5px;
+  border: 2px lightgrey solid;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 8px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  max-height: 90vh;
+  width: 60vw;
+  margin: auto;
+  padding: 1em;
 }

@@ -1,11 +1,6 @@
 import { updateDB } from '../utilities/fetchUtilities';
 
-export default function Controls({
-  game,
-  handleNewGame,
-  handleHowToPlay,
-  toggleColorblindMode
-}) {
+export default function Controls({ game, setGame, toggleColorblindMode }) {
   const add3Cards = () => {
     const body = {
       method: 'add_cards'
@@ -20,8 +15,7 @@ export default function Controls({
       ) : (
         <button disabled> + 3 More Cards</button>
       )}
-      <button onClick={handleHowToPlay}>How Do I Play?</button>
-      <button onClick={handleNewGame}> New Game </button>
+      <button onClick={() => setGame()}> Leave Game </button>
       <button onClick={toggleColorblindMode}>Colorblind Mode</button>
     </div>
   ) : null;

@@ -6,11 +6,9 @@ import IconThree from '../components/IconThree';
 import EmployeeInfo from './EmployeeInfo';
 
 export default function Header({
-  handleNewGame,
   game,
-  setCardsToShow,
   handleHowToPlay,
-  points,
+  setGame,
   toggleColorblindMode,
   updateDB
 }) {
@@ -43,14 +41,14 @@ export default function Header({
         <IconThree />
       </div>
       <div className='header-content'>
-        <EmployeeInfo points={points} />
+        {/* <EmployeeInfo points={points} /> */}
         <div className='title-container'>
           <h1 className='title'>Order Up!</h1>
         </div>
+        <button onClick={handleHowToPlay}>How Do I Play?</button>
         <Controls
-          handleNewGame={handleNewGame}
+          setGame={setGame}
           game={game}
-          setCardsToShow={setCardsToShow}
           handleHowToPlay={handleHowToPlay}
           toggleColorblindMode={toggleColorblindMode}
           updateDB={updateDB}

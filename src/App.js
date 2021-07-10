@@ -9,12 +9,14 @@ import HowToPlayContainer from './containers/HowToPlayContainer';
 import Attribution from './components/Attribution';
 
 import consumer from './cable';
+import MainMenu from './containers/MainMenu';
 
 function App() {
   const [game, setGame] = useState({});
   const [points, setPoints] = useState(0); //TODO: This will does not work over sockets and will break when you implement it.
   const [showTutorial, setShowTutorial] = useState(false);
   const [colorblindMode, setColorblindMode] = useState(false);
+  const [currentPage, setCurrentPage] = useState();
 
   const gameIds = [1, 2];
 
@@ -39,6 +41,10 @@ function App() {
     setShowTutorial(!showTutorial);
   };
 
+  const joinGame = id => {
+    getGameFromDB(id).then(setGame);
+  };
+
   const renderColorBlindMode = () => {
     const root = document.querySelector(':root');
     if (colorblindMode) {
@@ -57,11 +63,6 @@ function App() {
     setColorblindMode(!colorblindMode);
   };
 
-  useEffect(() => {
-    createSubscription();
-    getGameFromDB(gameId).then(setGame);
-  }, []);
-
   return (
     <div className='App'>
       {renderColorBlindMode()}
@@ -71,12 +72,14 @@ function App() {
       <Header
         handleHowToPlay={handleHowToPlay}
         game={game}
-        points={points}
+        setGame={setGame}
         toggleColorblindMode={toggleColorblindMode}
       />
-      {game.board ? (
+      {game?.board ? (
         <GameBoard boardCards={game.board} gameId={game.id} />
-      ) : null}
+      ) : (
+        <MainMenu joinGame={joinGame} />
+      )}
       <div className='background-wing'></div>
       <Attribution />
     </div>
