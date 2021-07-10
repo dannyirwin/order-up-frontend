@@ -33,9 +33,10 @@ export default function GameBoard({ game }) {
     });
   };
 
-  const handleSelectedCards = () => {
+  const updateSetWithDB = () => {
     if (selectedCards.length >= 3) {
       const body = {
+        method: 'check_set',
         cards: [selectedCards[0], selectedCards[1], selectedCards[2]]
       };
       updateDB(body, id);
@@ -56,7 +57,7 @@ export default function GameBoard({ game }) {
   };
 
   useEffect(() => {
-    handleSelectedCards();
+    updateSetWithDB();
   }, [selectedCards]);
 
   console.log(game);
