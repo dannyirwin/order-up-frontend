@@ -10,7 +10,7 @@ export default function Controls({ game, setGame, toggleColorblindMode }) {
 
   return game?.board ? (
     <div className='Controls'>
-      {game.board.length < 15 ? (
+      {game.board.length < 15 && game.deckLength !== 0 ? (
         <button onClick={add3Cards}>3 More Cards</button>
       ) : (
         <button disabled> + 3 More Cards</button>
