@@ -3,9 +3,10 @@ import { updateDB } from '../utilities/fetchUtilities';
 
 import SetCard from '../components/SetCard';
 import GameLobby from '../components/GameLobby';
+import GameOver from '../components/GameOver';
 
 export default function GameBoard({ game }) {
-  const { board, state, id } = game;
+  const { board, state, id, key } = game;
   const [selectedCards, setSelectedCards] = useState([]);
 
   const toggleSelectedCard = card => {
@@ -44,15 +45,15 @@ export default function GameBoard({ game }) {
     }
   };
 
-  const showGameState = () => {
-    console.log(state);
+  const showGame = () => {
     switch (state) {
+      case 'Game Over':
+        return <GameOver />;
       case 'Game in progress':
-        console.log('starting game');
         return showBoardCards();
       case 'Waiting for Players':
       default:
-        return <GameLobby gameId={id} />;
+        return <GameLobby gameId={id} gameKey={key} />;
     }
   };
 
@@ -62,5 +63,5 @@ export default function GameBoard({ game }) {
 
   console.log(game);
 
-  return <div className='GameBoard'>{showGameState()}</div>;
+  return <div className='GameBoard'>{showGame()}</div>;
 }
