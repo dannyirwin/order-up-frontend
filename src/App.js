@@ -5,7 +5,7 @@ import { getGameFromDB } from './utilities/fetchUtilities';
 
 import GameBoard from './containers/GameBoard';
 import Header from './containers/Header';
-import HowToPlayContainer from './containers/HowToPlayContainer';
+import HowToPlay from './components/HowToPlay';
 import Attribution from './components/Attribution';
 
 import consumer from './cable';
@@ -13,16 +13,11 @@ import MainMenu from './containers/MainMenu';
 
 function App() {
   const [game, setGame] = useState({});
-  const [points, setPoints] = useState(0); //TODO: This will does not work over sockets and will break when you implement it.
   const [showTutorial, setShowTutorial] = useState(false);
   const [colorblindMode, setColorblindMode] = useState(false);
   const [currentPage, setCurrentPage] = useState();
 
-  const gameIds = [1, 2];
-
-  const gameId = gameIds[Math.floor(Math.random() * 2)];
-
-  const createSubscription = () => {
+  const createSubscription = gameId => {
     consumer.subscriptions.create(
       {
         channel: 'GamesChannel',
@@ -42,7 +37,11 @@ function App() {
   };
 
   const joinGame = id => {
-    getGameFromDB(id).then(setGame);
+    getGameFromDB(id)
+      .then(setGame)
+      .then(() => {
+        createSubscription(id);
+      });
   };
 
   const renderColorBlindMode = () => {
@@ -67,7 +66,9 @@ function App() {
     <div className='App'>
       {renderColorBlindMode()}
       {showTutorial ? (
-        <HowToPlayContainer handleHowToPlay={handleHowToPlay} />
+        <div className='disabled-background'>
+          <HowToPlay handleHowToPlay={handleHowToPlay} />
+        </div>
       ) : null}
       <Header
         handleHowToPlay={handleHowToPlay}

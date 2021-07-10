@@ -8,13 +8,13 @@ const headers = {
 };
 
 const getAllGamesFromDB = async () => {
-  const resp = await fetch(gamesUrl);
-  return await resp.json();
+  const response = await fetch(gamesUrl);
+  return response.json();
 };
 
 const getGameFromDB = async id => {
-  const resp = await fetch(gamesUrl + id);
-  return await resp.json();
+  const response = await fetch(gamesUrl + id);
+  return response.json();
 };
 
 const updateDB = async (body, id) => {
@@ -23,8 +23,19 @@ const updateDB = async (body, id) => {
     headers: headers,
     body: JSON.stringify(body)
   };
-  const resp = await fetch(gamesUrl + id, options);
-  return await resp.json();
+  const response = await fetch(gamesUrl + id, options);
+  return response.json();
 };
 
-export { getAllGamesFromDB, getGameFromDB, updateDB };
+const postNewGameToDB = async (isPrivate = false) => {
+  const body = { private: isPrivate };
+  const options = {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify(body)
+  };
+  const response = await fetch(gamesUrl, options);
+  return response.json();
+};
+
+export { getAllGamesFromDB, getGameFromDB, updateDB, postNewGameToDB };

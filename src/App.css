@@ -154,7 +154,7 @@ svg {
   justify-content: center;
 }
 
-.HowToPlayContainer {
+.disabled-background {
   display: flex;
   justify-content: center;
   align-content: center;

@@ -8,6 +8,7 @@ export default function PublicGames({ joinGame, games }) {
         <tr key={i}>
           <td>{i + 1}</td>
           <td>{game.key}</td>
+          <td>{game.state}</td>
           <td>
             <button onClick={() => joinGame(game.id)}>Join Game</button>
           </td>
@@ -15,7 +16,6 @@ export default function PublicGames({ joinGame, games }) {
       );
     });
   };
-  console.log(games);
 
   return (
     <div>
