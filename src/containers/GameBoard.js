@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { updateDB } from '../utilities/fetchUtilities';
 
 import SetCard from '../components/SetCard';
+import GameLobby from '../components/GameLobby';
 
-export default function GameBoard({ boardCards, gameId }) {
+export default function GameBoard({ game }) {
+  const { board, state, id } = game;
   const [selectedCards, setSelectedCards] = useState([]);
 
   const toggleSelectedCard = card => {
@@ -19,7 +21,7 @@ export default function GameBoard({ boardCards, gameId }) {
   };
 
   const showBoardCards = () => {
-    return boardCards.map(card => {
+    return board.map(card => {
       return (
         <SetCard
           card={card}
@@ -36,8 +38,20 @@ export default function GameBoard({ boardCards, gameId }) {
       const body = {
         cards: [selectedCards[0], selectedCards[1], selectedCards[2]]
       };
-      updateDB(body, gameId).then(console.log);
+      updateDB(body, id);
       setSelectedCards([]);
+    }
+  };
+
+  const showGameState = () => {
+    console.log(state);
+    switch (state) {
+      case 'Game in progress':
+        console.log('starting game');
+        return showBoardCards();
+      case 'Waiting for Players':
+      default:
+        return <GameLobby gameId={id} />;
     }
   };
 
@@ -45,5 +59,7 @@ export default function GameBoard({ boardCards, gameId }) {
     handleSelectedCards();
   }, [selectedCards]);
 
-  return <div className='GameBoard'>{showBoardCards()}</div>;
+  console.log(game);
+
+  return <div className='GameBoard'>{showGameState()}</div>;
 }

@@ -77,7 +77,7 @@ function App() {
         toggleColorblindMode={toggleColorblindMode}
       />
       {game?.board ? (
-        <GameBoard boardCards={game.board} gameId={game.id} />
+        <GameBoard game={game} />
       ) : (
         <MainMenu joinGame={joinGame} />
       )}
