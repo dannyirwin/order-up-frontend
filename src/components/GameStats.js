@@ -15,7 +15,7 @@ export default function GameStats({ game, user }) {
       })
       .map((user, i) => {
         return (
-          <div className='score-row'>
+          <div className='score-row' key={i}>
             <div className='score-rank'>{nth(i + 1)}</div>
             <UserIcon user={user} size='tiny' />
             <div className='score-name'>{user.username}</div>

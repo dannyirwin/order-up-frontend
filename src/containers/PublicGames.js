@@ -1,19 +1,23 @@
 export default function PublicGames({ joinGame, games }) {
-  const showGameState = game => {
-    if (game.state === 'Waiting for Players') {
-      return <td className='status-waiting'>{game.state}</td>;
-    }
-    const gameProgress = Math.floor(
-      (1 - (game.board.length + game.deckLength) / 81) * 100
-    );
-    return (
-      <td className='status-playing'>{`Game Progress: ${gameProgress}%`}</td>
-    );
-  };
-
   const showGames = () => {
+    const showGameState = game => {
+      const gameProgress = Math.floor(
+        (1 - (game.board.length + game.deckLength) / 81) * 100
+      );
+      switch (game.state) {
+        case 'Waiting for Players':
+          return <td className='status-waiting'>{game.state}</td>;
+        case 'Game in progress':
+          return (
+            <td className='status-playing'>{`Game Progress: ${gameProgress}%`}</td>
+          );
+        default:
+          return null;
+      }
+    };
+
     return games
-      .filter(game => !game.is_private)
+      .filter(game => !game.is_private && game.state !== 'Game Over')
       .map((game, i) => {
         return (
           <tr key={i}>

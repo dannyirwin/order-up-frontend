@@ -19,7 +19,7 @@ export default function GameBoard({ game, setAlert }) {
   const showGame = () => {
     switch (game.state) {
       case 'Game Over':
-        return <GameOver />;
+        return <GameOver game={game} />;
       case 'Game in progress':
         if (!user?.id) {
           return (
