@@ -1,12 +1,22 @@
 import { useState, useEffect } from 'react';
-import { updateDB } from '../utilities/fetchUtilities';
+import { updateGameToDB } from '../utilities/fetchUtilities';
 
 import SetCard from '../components/SetCard';
 import GameLobby from '../components/GameLobby';
 import GameOver from '../components/GameOver';
 
+const newUser = () => {
+  const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+  const iconId = Math.floor(Math.random() * 9) + 1;
+  return {
+    color: randomColor,
+    icon_id: iconId
+  };
+};
+
 export default function GameBoard({ game }) {
   const { board, state, id, key } = game;
+  const [user, setUser] = useState(newUser());
   const [selectedCards, setSelectedCards] = useState([]);
 
   const toggleSelectedCard = card => {
@@ -40,7 +50,7 @@ export default function GameBoard({ game }) {
         method: 'check_set',
         cards: [selectedCards[0], selectedCards[1], selectedCards[2]]
       };
-      updateDB(body, id);
+      updateGameToDB(body, id);
       setSelectedCards([]);
     }
   };
@@ -50,10 +60,13 @@ export default function GameBoard({ game }) {
       case 'Game Over':
         return <GameOver />;
       case 'Game in progress':
+        if (!user?.id) {
+          return <GameLobby game={game} user={user} setUser={setUser} />;
+        }
         return showBoardCards();
       case 'Waiting for Players':
       default:
-        return <GameLobby gameId={id} gameKey={key} />;
+        return <GameLobby game={game} user={user} setUser={setUser} />;
     }
   };
 

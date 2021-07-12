@@ -1,11 +1,11 @@
-import { updateDB } from '../utilities/fetchUtilities';
+import { updateGameToDB } from '../utilities/fetchUtilities';
 
 export default function Controls({ game, setGame, toggleColorblindMode }) {
   const add3Cards = () => {
     const body = {
       method: 'add_cards'
     };
-    updateDB(body, game.id);
+    updateGameToDB(body, game.id);
   };
 
   return game?.board ? (

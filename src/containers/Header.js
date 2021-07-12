@@ -1,16 +1,14 @@
 import React from 'react';
 import Controls from '../components/Controls';
-import IconOne from '../components/IconOne';
-import IconTwo from '../components/IconTwo';
-import IconThree from '../components/IconThree';
-import EmployeeInfo from './EmployeeInfo';
+import IconOne from '../components/Icons/IconOne';
+import IconTwo from '../components/Icons/IconTwo';
+import IconThree from '../components/Icons/IconThree';
 
 export default function Header({
   game,
   handleHowToPlay,
   setGame,
-  toggleColorblindMode,
-  updateDB
+  toggleColorblindMode
 }) {
   return (
     <header className='Header'>
@@ -51,7 +49,6 @@ export default function Header({
           game={game}
           handleHowToPlay={handleHowToPlay}
           toggleColorblindMode={toggleColorblindMode}
-          updateDB={updateDB}
         />
       </div>
     </header>

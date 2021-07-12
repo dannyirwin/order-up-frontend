@@ -1,10 +1,19 @@
 //const baseUrl = 'https://hidden-shelf-20440.herokuapp.com/';
 const baseUrl = 'http://localhost:3000/';
 const gamesUrl = baseUrl + '/games/';
+const usersUrl = baseUrl + '/users/';
 
 const headers = {
   'Content-Type': 'application/json',
   Accept: 'application/json'
+};
+
+const fetchOptions = (body, method) => {
+  return {
+    method: method,
+    headers: headers,
+    body: JSON.stringify(body)
+  };
 };
 
 const getAllGamesFromDB = async () => {
@@ -17,25 +26,31 @@ const getGameFromDB = async id => {
   return response.json();
 };
 
-const updateDB = async (body, id) => {
-  const options = {
-    method: 'PATCH',
-    headers: headers,
-    body: JSON.stringify(body)
-  };
-  const response = await fetch(gamesUrl + id, options);
+const updateGameToDB = async (body, id) => {
+  const response = await fetch(gamesUrl + id, fetchOptions(body, 'PATCH'));
   return response.json();
 };
 
 const postNewGameToDB = async (isPrivate = false) => {
   const body = { private: isPrivate };
-  const options = {
-    method: 'POST',
-    headers: headers,
-    body: JSON.stringify(body)
-  };
-  const response = await fetch(gamesUrl, options);
+  const response = await fetch(gamesUrl, fetchOptions(body, 'POST'));
   return response.json();
 };
 
-export { getAllGamesFromDB, getGameFromDB, updateDB, postNewGameToDB };
+const postNewUserToDB = async (user, gameId) => {
+  const body = {
+    user: user
+  };
+  body.user.game_id = gameId;
+  console.log(body, gameId);
+  const response = await fetch(usersUrl, fetchOptions(body, 'POST'));
+  return response.json();
+};
+
+export {
+  getAllGamesFromDB,
+  getGameFromDB,
+  updateGameToDB,
+  postNewGameToDB,
+  postNewUserToDB
+};

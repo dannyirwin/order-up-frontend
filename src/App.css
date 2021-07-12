@@ -33,7 +33,6 @@
   flex-wrap: wrap;
   max-width: 1500px;
   max-height: 100%;
-
   margin: auto;
 }
 
@@ -254,7 +253,8 @@ svg {
 }
 
 button,
-input[type='submit'] {
+input[type='submit'],
+input[type='text'] {
   margin: auto 5px;
   padding: 10px;
   background-color: white;
@@ -268,7 +268,12 @@ input[type='submit'] {
   cursor: pointer;
 }
 
-button:hover {
+form {
+  padding: 10px;
+}
+
+button:hover,
+input[type='submit']:hover {
   transform: rotate(3deg);
 }
 
@@ -420,7 +425,7 @@ button:hover {
 .menu-card {
   background-color: white;
   border-radius: 5px;
-  border: 2px lightgrey solid;
+
   box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 8px;
   margin: auto;
   display: flex;
@@ -432,4 +437,82 @@ button:hover {
   width: 60vw;
   margin: auto;
   padding: 1em;
+}
+
+.menu-card > button {
+  margin: 10px;
+}
+
+tbody {
+  height: 300px;
+  max-height: 300px;
+  border: 2px lightgrey solid;
+  overflow-y: auto;
+}
+
+thead {
+  color: var(--color-2);
+}
+
+tr:nth-child(even) {
+  background: lightgrey;
+}
+
+td {
+  padding: 0 30px;
+}
+
+td > button {
+  font-size: 14px;
+  padding: 5px 10px;
+}
+
+.key-code-container > h1 {
+  color: var(--color-3);
+}
+
+.UserIcon {
+  margin: auto;
+}
+
+.user-icon-name {
+  padding: 0px;
+  margin: 0 auto;
+}
+
+.UserSetup > .UserIcon > svg {
+  height: 6rem;
+  width: 6rem;
+  stroke-width: 10px;
+  padding: 0px;
+}
+
+.lobby-card {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  border: 2px lightgrey solid;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 8px;
+}
+
+.GameLobby {
+  display: flex;
+  flex-direction: row;
+}
+
+input[type='text'] {
+  margin: 10px;
+}
+
+.players-display {
+  max-width: 50ch;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }

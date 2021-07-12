@@ -1,6 +1,6 @@
-import IconOne from './IconOne';
-import IconTwo from './IconTwo';
-import IconThree from './IconThree';
+import IconOne from './Icons/IconOne';
+import IconTwo from './Icons/IconTwo';
+import IconThree from './Icons/IconThree';
 
 export default function SetCard({ card, toggleSelectedCard, isSelected }) {
   const { color, fill, id, shape, count } = card;

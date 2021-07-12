@@ -32,9 +32,11 @@ export default function PublicGames({ joinGame, games }) {
       {games.length > 0 ? (
         <table>
           <thead>
-            <th>#</th>
-            <th>key</th>
-            <th></th>
+            <tr>
+              <th>#</th>
+              <th>key</th>
+              <th>Status</th>
+            </tr>
           </thead>
           <tbody>{showGames()}</tbody>
         </table>
