@@ -15,7 +15,6 @@ export default function UserIcon({ user, size }) {
     fill: color,
     stroke: color
   };
-  console.log(color);
   const showUserIcon = () => {
     switch (icon_id) {
       case 1:

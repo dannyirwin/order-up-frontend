@@ -26,7 +26,6 @@ function App() {
       },
       {
         received: gameData => {
-          console.log(gameData);
           setGame(gameData);
         }
       }

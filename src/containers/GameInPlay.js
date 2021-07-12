@@ -59,7 +59,7 @@ export default function GameInPlay({ game, user, setAlert, setUser }) {
     <div className='GameInPlay'>
       <GameStats game={game} user={user} />
       <div className='game-cards-container'>{showBoardCards()}</div>
-      <GameChat messages={game?.messages} />
+      <GameChat messages={game?.messages} gameId={game.id} userId={user.id} />
     </div>
   );
 }

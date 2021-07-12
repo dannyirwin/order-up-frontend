@@ -52,7 +52,5 @@ export default function GameBoard({ game, setAlert }) {
     }
   };
 
-  console.log(game);
-
   return <div className='GameBoard'>{showGame()}</div>;
 }

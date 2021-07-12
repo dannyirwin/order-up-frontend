@@ -3,9 +3,9 @@ import LobbyKeyCode from './LobbyKeyCode';
 
 import { updateGameToDB, postNewUserToDB } from '../utilities/fetchUtilities';
 import LobbyGameInfo from './LobbyGameInfo';
+import GameChat from './GameChat';
 
 export default function GameLobby({ game, user, setUser, setAlert }) {
-  console.log(game);
   const { id: gameId, key: gameKey } = game;
 
   const addUserToGame = e => {
@@ -34,6 +34,9 @@ export default function GameLobby({ game, user, setUser, setAlert }) {
           gameState={game.state}
         />
       )}
+      {user.id ? (
+        <GameChat messages={game.messages} gameId={game.id} userId={user.id} />
+      ) : null}
     </div>
   );
 }

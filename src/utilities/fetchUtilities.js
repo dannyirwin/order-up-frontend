@@ -2,6 +2,7 @@
 const baseUrl = 'http://localhost:3000/';
 const gamesUrl = baseUrl + '/games/';
 const usersUrl = baseUrl + '/users/';
+const messagesUrl = baseUrl + '/messages/';
 
 const headers = {
   'Content-Type': 'application/json',
@@ -42,8 +43,15 @@ const postNewUserToDB = async (user, gameId) => {
     user: user
   };
   body.user.game_id = gameId;
-  console.log(body, gameId);
   const response = await fetch(usersUrl, fetchOptions(body, 'POST'));
+  return response.json();
+};
+
+const postMessageToDB = async (content, userId, gameId) => {
+  const body = {
+    message: { content: content, user_id: userId, game_id: gameId }
+  };
+  const response = await fetch(messagesUrl, fetchOptions(body, 'POST'));
   return response.json();
 };
 
@@ -52,5 +60,6 @@ export {
   getGameFromDB,
   updateGameToDB,
   postNewGameToDB,
-  postNewUserToDB
+  postNewUserToDB,
+  postMessageToDB
 };
