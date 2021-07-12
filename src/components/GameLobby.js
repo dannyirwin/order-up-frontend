@@ -31,6 +31,7 @@ export default function GameLobby({ game, user, setUser }) {
           user={user}
           gameId={gameId}
           addUserToGame={addUserToGame}
+          gameState={game.state}
         />
       )}
     </div>

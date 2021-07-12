@@ -1,9 +1,10 @@
-import React from 'react';
+import { ChevronUpOutline } from 'react-ionicons';
 
 export default function PickUsername({
   setUserAttribute,
   user,
-  addUserToGame
+  addUserToGame,
+  gameState
 }) {
   const addUsername = e => {
     e.preventDefault();
@@ -12,7 +13,8 @@ export default function PickUsername({
   };
 
   return (
-    <form>
+    <form className='PickUsername'>
+      <label htmlFor='username'>Pick a Username: </label>
       <input
         type='text'
         placeholder='What should we call you?'
@@ -24,10 +26,14 @@ export default function PickUsername({
         <input
           type='submit'
           onClick={addUserToGame}
-          value='Save Avatar and Join Game'
+          value={
+            gameState === 'Game in progress'
+              ? 'Save Avatar and Start Game'
+              : 'Save Avatar'
+          }
         ></input>
       ) : (
-        <button disabled>Enter a username to Join Game</button>
+        <button disabled>Enter a username to continue</button>
       )}
     </form>
   );

@@ -5,17 +5,18 @@ import { getGameFromDB } from './utilities/fetchUtilities';
 
 import GameBoard from './containers/GameBoard';
 import Header from './containers/Header';
-import HowToPlay from './components/HowToPlay';
 import Attribution from './components/Attribution';
+import MainMenu from './containers/MainMenu';
+import AlertBar from './components/AlertBar';
+import HowToPlay from './components/HowToPlay';
 
 import consumer from './cable';
-import MainMenu from './containers/MainMenu';
 
 function App() {
   const [game, setGame] = useState({});
   const [showTutorial, setShowTutorial] = useState(false);
   const [colorblindMode, setColorblindMode] = useState(false);
-  const [currentPage, setCurrentPage] = useState();
+  const [message, setMessage] = useState();
 
   const createSubscription = gameId => {
     consumer.subscriptions.create(
@@ -65,21 +66,18 @@ function App() {
   return (
     <div className='App'>
       {renderColorBlindMode()}
-      {showTutorial ? (
-        <div className='disabled-background'>
-          <HowToPlay handleHowToPlay={handleHowToPlay} />
-        </div>
-      ) : null}
+      {showTutorial ? <HowToPlay handleHowToPlay={handleHowToPlay} /> : null}
       <Header
         handleHowToPlay={handleHowToPlay}
         game={game}
         setGame={setGame}
         toggleColorblindMode={toggleColorblindMode}
       />
+      <AlertBar />
       {game?.board ? (
         <GameBoard game={game} />
       ) : (
-        <MainMenu joinGame={joinGame} />
+        <MainMenu joinGame={joinGame} handleHowToPlay={handleHowToPlay} />
       )}
       <div className='background-wing'></div>
       <Attribution />

@@ -8,7 +8,7 @@ export default function PickColor({ setUserAttribute, color }) {
   };
   console.log(color);
   return (
-    <div>
+    <div className='PickColor'>
       <SliderPicker color={color} onChangeComplete={handleChangeComplete} />
     </div>
   );

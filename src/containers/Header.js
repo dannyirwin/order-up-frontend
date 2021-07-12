@@ -43,7 +43,6 @@ export default function Header({
         <div className='title-container'>
           <h1 className='title'>Order Up!</h1>
         </div>
-        <button onClick={handleHowToPlay}>How Do I Play?</button>
         <Controls
           setGame={setGame}
           game={game}

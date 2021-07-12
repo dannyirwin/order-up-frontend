@@ -4,7 +4,7 @@ import PickIcon from '../components/PickIcon';
 
 import UserIcon from '../components/UserIcon';
 
-export default function UserSetup({ setUser, user, addUserToGame }) {
+export default function UserSetup({ setUser, user, addUserToGame, gameState }) {
   const setUserAttribute = (attribute, username) => {
     const newUser = { ...user };
     newUser[attribute] = username;
@@ -12,8 +12,8 @@ export default function UserSetup({ setUser, user, addUserToGame }) {
   };
 
   return (
-    <div className='UserSetup lobby-card card'>
-      <p>Customize your avatar</p>
+    <div className='UserSetup  card'>
+      <h3>Customize your avatar</h3>
       <UserIcon user={user} />
       <PickIcon setUserAttribute={setUserAttribute} />
       <PickColor setUserAttribute={setUserAttribute} color={user.color} />
@@ -21,6 +21,7 @@ export default function UserSetup({ setUser, user, addUserToGame }) {
         setUserAttribute={setUserAttribute}
         user={user}
         addUserToGame={addUserToGame}
+        gameState={gameState}
       />
     </div>
   );

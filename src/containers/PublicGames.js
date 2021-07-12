@@ -4,12 +4,14 @@ import { getAllGamesFromDB } from '../utilities/fetchUtilities';
 export default function PublicGames({ joinGame, games }) {
   const showGameState = game => {
     if (game.state === 'Waiting for Players') {
-      return game.state;
+      return <td className='status-waiting'>{game.state}</td>;
     }
     const gameProgress = Math.floor(
       (1 - (game.board.length + game.deckLength) / 81) * 100
     );
-    return `Game Progress: ${gameProgress}%`;
+    return (
+      <td className='status-playing'>{`Game Progress: ${gameProgress}%`}</td>
+    );
   };
 
   const showGames = () => {
@@ -18,7 +20,8 @@ export default function PublicGames({ joinGame, games }) {
         <tr key={i}>
           <td>{i + 1}</td>
           <td>{game.key}</td>
-          <td>{showGameState(game)}</td>
+          {showGameState(game)}
+          <td>{game.users.length}</td>
           <td>
             <button onClick={() => joinGame(game.id)}>Join Game</button>
           </td>
@@ -30,12 +33,13 @@ export default function PublicGames({ joinGame, games }) {
   return (
     <div>
       {games.length > 0 ? (
-        <table>
+        <table className='PublicGames'>
           <thead>
             <tr>
               <th>#</th>
               <th>key</th>
               <th>Status</th>
+              <th>Players</th>
             </tr>
           </thead>
           <tbody>{showGames()}</tbody>

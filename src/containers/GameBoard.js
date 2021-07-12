@@ -15,7 +15,7 @@ const newUser = () => {
 };
 
 export default function GameBoard({ game }) {
-  const { board, state, id, key } = game;
+  const { board, state, id } = game;
   const [user, setUser] = useState(newUser());
   const [selectedCards, setSelectedCards] = useState([]);
 

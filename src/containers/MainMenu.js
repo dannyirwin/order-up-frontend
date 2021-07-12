@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import JoinGame from './JoinGame';
+import MainCardHowToPlay from './MainCardHowToPlay';
+import MainCardPlayOnline from './MainCardPlayOnline';
+import MainCardPractice from './MainCardPractice';
 
-export default function MainMenu({ joinGame }) {
+export default function MainMenu({ joinGame, handleHowToPlay }) {
   const [currentPage, setCurrentPage] = useState('');
 
   const showPage = () => {
@@ -10,12 +13,10 @@ export default function MainMenu({ joinGame }) {
         return <JoinGame setCurrentPage={setCurrentPage} joinGame={joinGame} />;
       default:
         return (
-          <div>
-            <button onClick={() => setCurrentPage()}>Practice</button>
-            <button onClick={() => setCurrentPage('Play Online')}>
-              Play Online!
-            </button>
-            <button onClick={() => setCurrentPage()}>Leaderboards</button>
+          <div className='MainMenu'>
+            <MainCardHowToPlay handleHowToPlay={handleHowToPlay} />
+            <MainCardPractice setCurrentPage={setCurrentPage} />
+            <MainCardPlayOnline setCurrentPage={setCurrentPage} />
           </div>
         );
     }

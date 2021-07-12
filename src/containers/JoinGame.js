@@ -24,8 +24,9 @@ export default function JoinGame({ setCurrentPage, joinGame }) {
   }, []);
 
   return (
-    <div className='menu-card'>
+    <div className='JoinGame card'>
       <JoinWithKey joinGame={joinGame} games={allGames} />
+      <hr></hr>
       Public Games:
       <PublicGames joinGame={joinGame} games={publicGames()} />
       <button onClick={() => createNewGame()}>Create an New Game</button>
