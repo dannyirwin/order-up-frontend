@@ -32,7 +32,7 @@ const updateGameToDB = async (body, id) => {
 };
 
 const postNewGameToDB = async (isPrivate = false) => {
-  const body = { private: isPrivate };
+  const body = { is_private: isPrivate };
   const response = await fetch(gamesUrl, fetchOptions(body, 'POST'));
   return response.json();
 };

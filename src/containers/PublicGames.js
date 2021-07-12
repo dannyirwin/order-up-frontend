@@ -12,19 +12,21 @@ export default function PublicGames({ joinGame, games }) {
   };
 
   const showGames = () => {
-    return games.map((game, i) => {
-      return (
-        <tr key={i}>
-          <td>{i + 1}</td>
-          <td>{game.key}</td>
-          {showGameState(game)}
-          <td>{game.users.length}</td>
-          <td>
-            <button onClick={() => joinGame(game.id)}>Join Game</button>
-          </td>
-        </tr>
-      );
-    });
+    return games
+      .filter(game => !game.is_private)
+      .map((game, i) => {
+        return (
+          <tr key={i}>
+            <td>{i + 1}</td>
+            <td>{game.key}</td>
+            {showGameState(game)}
+            <td>{game.users.length}</td>
+            <td>
+              <button onClick={() => joinGame(game.id)}>Join Game</button>
+            </td>
+          </tr>
+        );
+      });
   };
 
   return (
