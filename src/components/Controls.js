@@ -21,7 +21,14 @@ export default function Controls({
       ) : (
         <button disabled> + 3 More Cards</button>
       )}
-      <button onClick={() => setGame()}> Leave Game </button>
+      <button
+        onClick={() => {
+          setGame();
+        }}
+      >
+        {' '}
+        Leave Game{' '}
+      </button>
       <button onClick={toggleColorblindMode}>Colorblind Mode</button>
     </div>
   ) : null;

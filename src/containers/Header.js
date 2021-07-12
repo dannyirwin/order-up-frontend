@@ -3,9 +3,11 @@ import Controls from '../components/Controls';
 import IconOne from '../components/Icons/IconOne';
 import IconTwo from '../components/Icons/IconTwo';
 import IconThree from '../components/Icons/IconThree';
+import EmployeeInfo from '../containers/EmployeeInfo';
 
 export default function Header({
   game,
+  user,
   handleHowToPlay,
   setGame,
   toggleColorblindMode
@@ -39,7 +41,6 @@ export default function Header({
         <IconThree />
       </div>
       <div className='header-content'>
-        {/* <EmployeeInfo points={points} /> */}
         <div className='title-container'>
           <h1 className='title'>Order Up!</h1>
         </div>

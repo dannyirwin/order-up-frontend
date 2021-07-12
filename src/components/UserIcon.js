@@ -9,7 +9,7 @@ import { ReactComponent as SodaIcon } from '../images/soda.svg';
 import { ReactComponent as TacoIcon } from '../images/taco.svg';
 import { ReactComponent as ToastIcon } from '../images/toast.svg';
 
-export default function UserIcon({ user }) {
+export default function UserIcon({ user, size }) {
   const { username, color, icon_id } = user;
   const style = {
     fill: color,
@@ -43,11 +43,13 @@ export default function UserIcon({ user }) {
     }
   };
   return (
-    <div className='UserIcon'>
+    <div className={`UserIcon ${size}`}>
       {showUserIcon()}
-      <p className='user-icon-name' style={{ color: color }}>
-        {username}
-      </p>
+      {size !== 'tiny' ? (
+        <p className='user-icon-name' style={{ color: color }}>
+          {username}
+        </p>
+      ) : null}
     </div>
   );
 }

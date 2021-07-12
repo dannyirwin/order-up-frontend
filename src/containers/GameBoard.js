@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
-import { updateGameToDB } from '../utilities/fetchUtilities';
+import { useState } from 'react';
 
-import SetCard from '../components/SetCard';
 import GameLobby from '../components/GameLobby';
 import GameOver from '../components/GameOver';
+import GameInPlay from './GameInPlay';
 
 const newUser = () => {
   const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
@@ -15,48 +14,10 @@ const newUser = () => {
 };
 
 export default function GameBoard({ game, setAlert }) {
-  const { board, state, id } = game;
   const [user, setUser] = useState(newUser());
-  const [selectedCards, setSelectedCards] = useState([]);
-
-  const toggleSelectedCard = card => {
-    if (isSelected(card)) {
-      setSelectedCards(selectedCards.filter(sCard => sCard.id !== card.id));
-    } else {
-      setSelectedCards([...selectedCards, card]);
-    }
-  };
-
-  const isSelected = card => {
-    return selectedCards.filter(sCard => sCard.id === card.id).length > 0;
-  };
-
-  const showBoardCards = () => {
-    return board.map(card => {
-      return (
-        <SetCard
-          card={card}
-          key={card.id}
-          toggleSelectedCard={toggleSelectedCard}
-          isSelected={isSelected(card)}
-        />
-      );
-    });
-  };
-
-  const updateSetWithDB = () => {
-    if (selectedCards.length >= 3) {
-      const body = {
-        method: 'check_set',
-        cards: [selectedCards[0], selectedCards[1], selectedCards[2]]
-      };
-      updateGameToDB(body, id);
-      setSelectedCards([]);
-    }
-  };
 
   const showGame = () => {
-    switch (state) {
+    switch (game.state) {
       case 'Game Over':
         return <GameOver />;
       case 'Game in progress':
@@ -70,7 +31,14 @@ export default function GameBoard({ game, setAlert }) {
             />
           );
         }
-        return showBoardCards();
+        return (
+          <GameInPlay
+            game={game}
+            setAlert={setAlert}
+            user={user}
+            setUser={setUser}
+          />
+        );
       case 'Waiting for Players':
       default:
         return (
@@ -83,10 +51,6 @@ export default function GameBoard({ game, setAlert }) {
         );
     }
   };
-
-  useEffect(() => {
-    updateSetWithDB();
-  }, [selectedCards]);
 
   console.log(game);
 
