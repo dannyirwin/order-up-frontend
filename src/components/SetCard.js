@@ -3,7 +3,7 @@ import IconTwo from './Icons/IconTwo';
 import IconThree from './Icons/IconThree';
 
 export default function SetCard({ card, toggleSelectedCard, isSelected }) {
-  const { color, fill, id, shape, count } = card;
+  const { color, fill, shape, count } = card;
 
   const showIcons = () => {
     const components = [];

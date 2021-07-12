@@ -1,5 +1,9 @@
 import React from 'react';
 
-export default function AlertBar({ message }) {
-  return <div className='AlertBar'>{message}</div>;
+export default function AlertBar({ alert }) {
+  return (
+    <div className='AlertBar'>
+      <p className='alert-message'>{alert}</p>
+    </div>
+  );
 }

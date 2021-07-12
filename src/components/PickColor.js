@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { SliderPicker } from 'react-color';
 
 export default function PickColor({ setUserAttribute, color }) {

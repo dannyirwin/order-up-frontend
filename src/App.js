@@ -1,6 +1,6 @@
 import './App.css';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getGameFromDB } from './utilities/fetchUtilities';
 
 import GameBoard from './containers/GameBoard';
@@ -16,7 +16,7 @@ function App() {
   const [game, setGame] = useState({});
   const [showTutorial, setShowTutorial] = useState(false);
   const [colorblindMode, setColorblindMode] = useState(false);
-  const [message, setMessage] = useState();
+  const [alert, setAlert] = useState();
 
   const createSubscription = gameId => {
     consumer.subscriptions.create(
@@ -35,6 +35,13 @@ function App() {
 
   const handleHowToPlay = () => {
     setShowTutorial(!showTutorial);
+  };
+
+  const handleAlert = alert => {
+    setAlert(alert);
+    setTimeout(() => {
+      setAlert('');
+    }, 6000);
   };
 
   const joinGame = id => {
@@ -73,14 +80,18 @@ function App() {
         setGame={setGame}
         toggleColorblindMode={toggleColorblindMode}
       />
-      <AlertBar />
+      <AlertBar alert={alert} />
       {game?.board ? (
-        <GameBoard game={game} />
+        <GameBoard game={game} setAlert={handleAlert} />
       ) : (
-        <MainMenu joinGame={joinGame} handleHowToPlay={handleHowToPlay} />
+        <MainMenu
+          joinGame={joinGame}
+          handleHowToPlay={handleHowToPlay}
+          setAlert={handleAlert}
+        />
       )}
-      <div className='background-wing'></div>
       <Attribution />
+      <div className='background-wing'></div>
     </div>
   );
 }

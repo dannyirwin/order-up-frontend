@@ -4,7 +4,7 @@ import LobbyKeyCode from './LobbyKeyCode';
 import { updateGameToDB, postNewUserToDB } from '../utilities/fetchUtilities';
 import LobbyGameInfo from './LobbyGameInfo';
 
-export default function GameLobby({ game, user, setUser }) {
+export default function GameLobby({ game, user, setUser, setAlert }) {
   console.log(game);
   const { id: gameId, key: gameKey } = game;
 
@@ -22,7 +22,7 @@ export default function GameLobby({ game, user, setUser }) {
 
   return (
     <div className='GameLobby'>
-      <LobbyKeyCode gameKey={gameKey} />
+      <LobbyKeyCode gameKey={gameKey} setAlert={setAlert} />
       {user.id ? (
         <LobbyGameInfo startGame={startGame} players={game.users} />
       ) : (

@@ -1,5 +1,3 @@
-import { ChevronUpOutline } from 'react-ionicons';
-
 export default function PickUsername({
   setUserAttribute,
   user,

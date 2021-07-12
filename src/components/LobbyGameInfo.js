@@ -4,7 +4,7 @@ import UserIcon from './UserIcon';
 export default function LobbyGameInfo({ startGame, players }) {
   const showPlayers = () => {
     return players.map(user => {
-      return <UserIcon user={user} />;
+      return <UserIcon user={user} key={user.id} />;
     });
   };
   return (

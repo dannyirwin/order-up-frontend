@@ -1,6 +1,3 @@
-import { useEffect, useState } from 'react';
-import { getAllGamesFromDB } from '../utilities/fetchUtilities';
-
 export default function PublicGames({ joinGame, games }) {
   const showGameState = game => {
     if (game.state === 'Waiting for Players') {

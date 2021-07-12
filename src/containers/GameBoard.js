@@ -14,7 +14,7 @@ const newUser = () => {
   };
 };
 
-export default function GameBoard({ game }) {
+export default function GameBoard({ game, setAlert }) {
   const { board, state, id } = game;
   const [user, setUser] = useState(newUser());
   const [selectedCards, setSelectedCards] = useState([]);
@@ -61,12 +61,26 @@ export default function GameBoard({ game }) {
         return <GameOver />;
       case 'Game in progress':
         if (!user?.id) {
-          return <GameLobby game={game} user={user} setUser={setUser} />;
+          return (
+            <GameLobby
+              game={game}
+              user={user}
+              setUser={setUser}
+              setAlert={setAlert}
+            />
+          );
         }
         return showBoardCards();
       case 'Waiting for Players':
       default:
-        return <GameLobby game={game} user={user} setUser={setUser} />;
+        return (
+          <GameLobby
+            game={game}
+            user={user}
+            setUser={setUser}
+            setAlert={setAlert}
+          />
+        );
     }
   };
 

@@ -2,13 +2,14 @@ import React from 'react';
 
 import { ClipboardOutline } from 'react-ionicons';
 
-export default function LobbyKeyCode({ gameKey }) {
+export default function LobbyKeyCode({ gameKey, setAlert }) {
   const copyKeyToClipboard = e => {
     const dummyEl = document.createElement('input');
     dummyEl.value = gameKey;
     document.body.appendChild(dummyEl);
     dummyEl.select();
     document.execCommand('copy');
+    setAlert('Copied to Clip Board');
     document.body.removeChild(dummyEl);
   };
 
