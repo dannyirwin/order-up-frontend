@@ -3,12 +3,20 @@ import JoinGame from './JoinGame';
 import MainCardHowToPlay from './MainCardHowToPlay';
 import MainCardPlayOnline from './MainCardPlayOnline';
 import MainCardPractice from './MainCardPractice';
+import PracticeGame from './PracticeGame';
 
-export default function MainMenu({ joinGame, handleHowToPlay, setAlert }) {
+export default function MainMenu({
+  joinGame,
+  handleHowToPlay,
+  setAlert,
+  togglePracticeMode
+}) {
   const [currentPage, setCurrentPage] = useState('');
 
   const showPage = () => {
     switch (currentPage) {
+      case 'Practice':
+        return <PracticeGame setCurrentPage={setCurrentPage} />;
       case 'Play Online':
         return (
           <JoinGame
@@ -21,7 +29,7 @@ export default function MainMenu({ joinGame, handleHowToPlay, setAlert }) {
         return (
           <div className='MainMenu'>
             <MainCardHowToPlay handleHowToPlay={handleHowToPlay} />
-            <MainCardPractice setCurrentPage={setCurrentPage} />
+            <MainCardPractice togglePracticeMode={togglePracticeMode} />
             <MainCardPlayOnline setCurrentPage={setCurrentPage} />
           </div>
         );

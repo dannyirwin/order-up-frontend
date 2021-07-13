@@ -3,13 +3,15 @@ import Controls from '../components/Controls';
 import IconOne from '../components/Icons/IconOne';
 import IconTwo from '../components/Icons/IconTwo';
 import IconThree from '../components/Icons/IconThree';
-import EmployeeInfo from '../containers/EmployeeInfo';
+import PracticeControls from '../components/PracticeControls';
 
 export default function Header({
   game,
   handleHowToPlay,
   setGame,
-  toggleColorblindMode
+  toggleColorblindMode,
+  togglePracticeMode,
+  isPractice
 }) {
   return (
     <header className='Header'>
@@ -43,12 +45,19 @@ export default function Header({
         <div className='title-container'>
           <h1 className='title'>Order Up!</h1>
         </div>
-        <Controls
-          setGame={setGame}
-          game={game}
-          handleHowToPlay={handleHowToPlay}
-          toggleColorblindMode={toggleColorblindMode}
-        />
+        {isPractice ? (
+          <PracticeControls
+            goBack={togglePracticeMode}
+            handleHowToPlay={handleHowToPlay}
+          />
+        ) : (
+          <Controls
+            setGame={setGame}
+            game={game}
+            handleHowToPlay={handleHowToPlay}
+            toggleColorblindMode={toggleColorblindMode}
+          />
+        )}
       </div>
     </header>
   );

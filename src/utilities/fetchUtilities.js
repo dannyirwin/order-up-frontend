@@ -1,5 +1,5 @@
-const baseUrl = 'https://hidden-shelf-20440.herokuapp.com/';
-//const baseUrl = 'http://localhost:3000/';
+//const baseUrl = 'https://hidden-shelf-20440.herokuapp.com/';
+const baseUrl = 'http://localhost:3000/';
 const gamesUrl = baseUrl + '/games/';
 const usersUrl = baseUrl + '/users/';
 const messagesUrl = baseUrl + '/messages/';

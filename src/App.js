@@ -11,11 +11,13 @@ import AlertBar from './components/AlertBar';
 import HowToPlay from './components/HowToPlay';
 
 import consumer from './cable';
+import PracticeGame from './containers/PracticeGame';
 
 function App() {
   const [game, setGame] = useState({});
   const [showTutorial, setShowTutorial] = useState(false);
   const [colorblindMode, setColorblindMode] = useState(false);
+  const [practiceMode, setPracticeMode] = useState(false);
   const [alert, setAlert] = useState();
 
   const createSubscription = gameId => {
@@ -69,6 +71,10 @@ function App() {
     setColorblindMode(!colorblindMode);
   };
 
+  const togglePracticeMode = () => {
+    setPracticeMode(!practiceMode);
+  };
+
   return (
     <div className='App'>
       {renderColorBlindMode()}
@@ -78,15 +84,21 @@ function App() {
         game={game}
         setGame={setGame}
         toggleColorblindMode={toggleColorblindMode}
+        togglePracticeMode={togglePracticeMode}
+        isPractice={practiceMode}
+        goBack={togglePracticeMode}
       />
       <AlertBar alert={alert} />
       {game?.board ? (
         <GameBoard game={game} setAlert={handleAlert} />
+      ) : practiceMode ? (
+        <PracticeGame />
       ) : (
         <MainMenu
           joinGame={joinGame}
           handleHowToPlay={handleHowToPlay}
           setAlert={handleAlert}
+          togglePracticeMode={togglePracticeMode}
         />
       )}
       <Attribution />
