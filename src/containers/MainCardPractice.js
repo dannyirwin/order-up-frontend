@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function MainCardPractice({ setCurrentPage }) {
+export default function MainCardPractice({ togglePracticeMode }) {
   return (
     <div className='menu-card card'>
-      <button onClick={setCurrentPage}>Practice</button>
+      <button onClick={togglePracticeMode}>Practice</button>
       <hr></hr>
       <p>
         Slow down for a minute and practice by yourself with a never-ending

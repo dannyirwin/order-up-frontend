@@ -1,54 +1,36 @@
 import React from 'react';
 import Controls from '../components/Controls';
-import IconOne from '../components/Icons/IconOne';
-import IconTwo from '../components/Icons/IconTwo';
-import IconThree from '../components/Icons/IconThree';
-import EmployeeInfo from '../containers/EmployeeInfo';
+import PracticeControls from '../components/PracticeControls';
+import HeaderBackground from './HeaderBackground';
 
 export default function Header({
   game,
   handleHowToPlay,
   setGame,
-  toggleColorblindMode
+  toggleColorblindMode,
+  togglePracticeMode,
+  isPractice
 }) {
   return (
     <header className='Header'>
-      <div className='header-background'>
-        <IconOne />
-        <IconTwo />
-        <IconThree />
-        <IconOne />
-        <IconTwo />
-        <IconThree />
-        <IconOne />
-        <IconTwo />
-        <IconThree />
-        <IconOne />
-        <IconTwo />
-        <IconThree />
-        <IconOne />
-        <IconTwo />
-        <IconThree />
-        <IconOne />
-        <IconTwo />
-        <IconThree />
-        <IconOne />
-        <IconTwo />
-        <IconThree />
-        <IconOne />
-        <IconTwo />
-        <IconThree />
-      </div>
+      <HeaderBackground />
       <div className='header-content'>
         <div className='title-container'>
           <h1 className='title'>Order Up!</h1>
         </div>
-        <Controls
-          setGame={setGame}
-          game={game}
-          handleHowToPlay={handleHowToPlay}
-          toggleColorblindMode={toggleColorblindMode}
-        />
+        {isPractice ? (
+          <PracticeControls
+            goBack={togglePracticeMode}
+            handleHowToPlay={handleHowToPlay}
+          />
+        ) : (
+          <Controls
+            setGame={setGame}
+            game={game}
+            handleHowToPlay={handleHowToPlay}
+            toggleColorblindMode={toggleColorblindMode}
+          />
+        )}
       </div>
     </header>
   );

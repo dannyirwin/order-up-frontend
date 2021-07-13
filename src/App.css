@@ -32,12 +32,12 @@
   flex-wrap: wrap;
   width: 100%;
   max-height: 100%;
-  padding: 10px;
   padding-top: 30px;
-  margin: auto;
+  margin: 0;
 }
 
-.GameInPlay {
+.GameInPlay,
+.PracticeGame {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -45,8 +45,9 @@
   padding: 10px;
 }
 
-.GameStats {
-  margin: auto;
+.PracticeGame {
+  width: auto;
+  margin-right: 30ch;
 }
 
 .game-cards-container {
@@ -272,13 +273,15 @@ svg {
   transform: rotate(-10deg) translate(400px, -100px);
 }
 
-.Controls {
+.Controls,
+.PracticeControls {
   height: 100%;
   display: flex;
   align-content: center;
 }
 
-.Controls > button {
+.Controls > button,
+.PracticeControls > button {
   margin: auto 5px;
 }
 
@@ -424,25 +427,6 @@ input[type='submit']:hover {
 
 .color-3 {
   color: var(--color-3);
-}
-
-@media only screen and (max-width: 1200px) {
-  button,
-  p {
-    font-size: 12px;
-  }
-
-  .SetCard {
-    width: 9em;
-    height: 6em;
-  }
-
-  svg {
-    height: 1.7em;
-    width: 1.7em;
-    border-width: 3px;
-    border-radius: 7px;
-  }
 }
 
 .Attribution {
@@ -699,7 +683,7 @@ hr {
 
   100% {
     opacity: 0;
-    -o-ttransform: translateY(100);
+    -o-transform: translateY(100);
   }
 }
 @-moz-keyframes alertAnimation {
@@ -752,12 +736,10 @@ hr {
 
 .GameStats,
 .GameChat {
-  min-height: 60vh;
-  max-height: 60vh;
   width: 25ch;
   max-width: 25ch;
-  padding: 15px 0;
-  margin: auto 10px;
+  padding: 30px 0;
+  margin: auto 30px;
 }
 
 .user-points {
@@ -853,4 +835,53 @@ hr {
   font-size: 14px;
   padding: 5px;
   margin: 2px;
+}
+
+.points-display {
+  padding: 30px;
+}
+
+.banner {
+  height: 4em;
+  width: 4em;
+}
+
+@media only screen and (max-width: 1200px) {
+  button,
+  p {
+    font-size: 12px;
+  }
+
+  .SetCard {
+    width: 9em;
+    height: 6em;
+  }
+
+  svg {
+    height: 1.7em;
+    width: 1.7em;
+    border-width: 3px;
+    border-radius: 7px;
+  }
+
+  .GameChat,
+  .GameStats {
+    margin: auto 10px;
+    width: 20ch;
+    max-width: 20ch;
+  }
+
+  .message-form {
+    flex-direction: column;
+  }
+
+  .JoinGame {
+    padding: 10px;
+    width: auto;
+    max-width: 70vw;
+  }
+
+  .PracticeGame {
+    margin-right: 15ch;
+  }
 }

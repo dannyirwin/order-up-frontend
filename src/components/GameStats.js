@@ -2,12 +2,30 @@ import React from 'react';
 
 import UserIcon from '../components/UserIcon';
 
+import { updateGameToDB } from '../utilities/fetchUtilities';
+
 export default function GameStats({ game, user }) {
   const nth = n => {
     return (
       n + ['st', 'nd', 'rd'][((((n + 90) % 100) - 10) % 10) - 1] || n + 'th'
     );
   };
+
+  const add3Cards = () => {
+    const body = {
+      method: 'add_cards'
+    };
+    updateGameToDB(body, game.id);
+  };
+
+  const showAdd3Button = () => {
+    return game.board.length < 15 && game.deckLength !== 0 ? (
+      <button onClick={add3Cards}>+ 3 More Cards</button>
+    ) : (
+      <button disabled> + 3 More Cards</button>
+    );
+  };
+
   const showScores = () => {
     return game.users
       .sort((a, b) => {
@@ -25,14 +43,17 @@ export default function GameStats({ game, user }) {
       });
   };
   return (
-    <div className='GameStats card'>
-      <UserIcon user={user} size='large' />
-      <div className='user-points'>
-        <p>My Score: </p> <p>{user.points}</p>
+    <div>
+      {showAdd3Button()}
+      <div className='GameStats card'>
+        <UserIcon user={user} size='large' />
+        <div className='user-points'>
+          <p>My Score: </p> <p>{user.points}</p>
+        </div>
+        <hr></hr>
+        <p>Scoreboard</p>
+        <div className='scores-container'>{showScores()}</div>
       </div>
-      <hr></hr>
-      <p>Scoreboard</p>
-      <div className='scores-container'>{showScores()}</div>
     </div>
   );
 }
