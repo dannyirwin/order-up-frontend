@@ -25,8 +25,27 @@ const shuffleDeck = deck => {
     const j = Math.floor(Math.random() * (i + 1));
     [deck[i], deck[j]] = [deck[j], deck[i]];
   }
-  console.log(deck);
   return deck;
 };
 
-export { generateDeck, shuffleDeck };
+const isAllSame = array => {
+  return new Set(array).size === 1;
+};
+
+const isAllUnique = array => {
+  return new Set(array).size === array.length;
+};
+
+const checkIsSet = cards => {
+  const attributes = ['color', 'shape', 'fill', 'count'];
+
+  attributes.forEach(atr => {
+    const values = cards.map(card => card[atr]);
+    if (!isAllSame(values) && !isAllUnique(values)) {
+      return false;
+    }
+  });
+  return true;
+};
+
+export { generateDeck, shuffleDeck, checkIsSet };

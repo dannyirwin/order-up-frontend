@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
-import { CodeWorking } from 'react-ionicons';
 import SetCard from '../components/SetCard';
 
-import { generateDeck, shuffleDeck } from '../utilities/gameUtilities';
+import {
+  checkIsSet,
+  generateDeck,
+  shuffleDeck
+} from '../utilities/gameUtilities';
 
 export default function PracticeGame() {
   const [deck, setDeck] = useState(shuffleDeck(generateDeck()));
@@ -48,11 +51,45 @@ export default function PracticeGame() {
   };
 
   const showAdd3Button = () => {
-    if (cardsToShow === 12) {
+    if (cardsToShow === 12 && deck.length > cardsToShow) {
       return <button onClick={handleAdd3Cards}>+ 3 More Cards</button>;
     }
     return <button disabled>+ 3 More Cards</button>;
   };
+
+  const handleSelectedCards = () => {
+    if (checkIsSet(selectedCards)) {
+      setDiscardPile([...discardPile, selectedCards]);
+      setPoints(points + 1);
+      removeCardsFromDeck(selectedCards);
+      handleLoopingDeck();
+    }
+    setTimeout(() => {
+      setSelectedCards([]);
+    }, 500);
+  };
+
+  const handleLoopingDeck = () => {
+    if (deck.length === 0) {
+      setDeck(shuffleDeck(discardPile));
+    }
+  };
+
+  const removeCardsFromDeck = cards => {
+    let newDeck = [...deck];
+    cards.forEach(card => {
+      newDeck = newDeck.filter(deckCard => {
+        return deckCard.id !== card.id;
+      });
+    });
+    setDeck(newDeck);
+  };
+
+  useEffect(() => {
+    if (selectedCards.length >= 3) {
+      handleSelectedCards();
+    }
+  }, [selectedCards]);
 
   return (
     <div className='PracticeGame'>

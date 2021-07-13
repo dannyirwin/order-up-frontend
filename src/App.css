@@ -683,7 +683,7 @@ hr {
 
   100% {
     opacity: 0;
-    -o-ttransform: translateY(100);
+    -o-transform: translateY(100);
   }
 }
 @-moz-keyframes alertAnimation {
@@ -839,6 +839,11 @@ hr {
 
 .points-display {
   padding: 30px;
+}
+
+.banner {
+  height: 4em;
+  width: 4em;
 }
 
 @media only screen and (max-width: 1200px) {
