@@ -7,7 +7,6 @@ import EmployeeInfo from '../containers/EmployeeInfo';
 
 export default function Header({
   game,
-  user,
   handleHowToPlay,
   setGame,
   toggleColorblindMode
