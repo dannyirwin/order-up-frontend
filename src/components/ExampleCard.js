@@ -1,6 +1,6 @@
-import IconOne from './IconOne';
-import IconTwo from './IconTwo';
-import IconThree from './IconThree';
+import IconOne from './Icons/IconOne';
+import IconTwo from './Icons/IconTwo';
+import IconThree from './Icons/IconThree';
 
 export default function ExampleCard({ card }) {
   const { color, fill, shape, count } = card;

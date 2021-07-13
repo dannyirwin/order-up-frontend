@@ -29,11 +29,35 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-height: 100%;
+  padding: 10px;
+  padding-top: 30px;
+  margin: auto;
+}
+
+.GameInPlay {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+}
+
+.GameStats {
+  margin: auto;
+}
+
+.game-cards-container {
+  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   max-width: 1500px;
-  max-height: 100%;
-
+  width: 70em;
+  height: 60vh;
+  max-height: 60vh;
+  justify-content: center;
   margin: auto;
 }
 
@@ -42,15 +66,15 @@
   justify-content: center;
   align-content: center;
 
-  margin: 1em;
+  margin: 0.5em;
 
   border-radius: 12px;
   border: 2px lightgrey solid;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 8px;
   transition: 0.1s;
 
-  width: 16em;
-  height: 10em;
+  width: 12em;
+  height: 8em;
 
   max-width: 1500px;
 
@@ -113,8 +137,8 @@
 }
 
 svg {
-  height: 3rem;
-  width: 3rem;
+  height: 2rem;
+  width: 2rem;
   stroke-width: 7px;
   margin: auto 2px;
   padding: 5px;
@@ -133,7 +157,8 @@ svg {
   justify-content: center;
   align-content: center;
 
-  margin: 1.2em 0;
+  margin: 0;
+  margin-top: 1.5em;
 }
 
 .header-background {
@@ -154,7 +179,7 @@ svg {
   justify-content: center;
 }
 
-.HowToPlayContainer {
+.disabled-background {
   display: flex;
   justify-content: center;
   align-content: center;
@@ -189,7 +214,7 @@ svg {
 
 .HowToPlay > p {
   margin: auto;
-  width: 50ch;
+  width: 70ch;
   padding: 5px;
 }
 
@@ -253,8 +278,14 @@ svg {
   align-content: center;
 }
 
-button {
+.Controls > button {
   margin: auto 5px;
+}
+
+button,
+input[type='submit'],
+input[type='text'] {
+  margin: 10px 5px;
   padding: 10px;
   background-color: white;
   border-radius: 5px;
@@ -267,7 +298,12 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+form {
+  padding: 10px;
+}
+
+button:hover,
+input[type='submit']:hover {
   transform: rotate(3deg);
 }
 
@@ -397,21 +433,424 @@ button:hover {
   }
 
   .SetCard {
-    width: 12em;
-    height: 8em;
+    width: 9em;
+    height: 6em;
   }
 
   svg {
-    height: 2em;
-    width: 2em;
+    height: 1.7em;
+    width: 1.7em;
     border-width: 3px;
     border-radius: 7px;
   }
 }
 
-.attributing,
-.attributing > a {
-  color: grey;
-  margin-top: auto;
+.Attribution {
   bottom: 0;
+  width: 100%;
+  position: absolute;
+  color: grey;
+  margin: 10px;
+}
+
+.Attribution > a {
+  color: grey;
+}
+
+a:visited {
+  color: grey;
+}
+
+.menu-card > button {
+  margin: 10px;
+}
+
+.PublicGames {
+  display: block;
+  margin: 30px auto;
+  overflow-y: scroll;
+  overflow-x: visible;
+  height: 100%;
+  max-height: 250px;
+}
+
+tbody {
+  border: none;
+  border: 2px lightgrey solid;
+  margin: auto;
+}
+
+thead {
+  color: var(--color-3);
+}
+
+tr:nth-of-type(even) {
+  background: lightgrey;
+}
+
+td:nth-of-type(3) {
+  width: 100%;
+}
+
+td {
+  padding: 5px 30px;
+}
+
+td > button {
+  font-size: 14px;
+  padding: 5px 10px;
+  white-space: nowrap;
+}
+
+.status-waiting {
+  color: var(--color-1);
+}
+
+.status-playing {
+  color: var(--color-2);
+}
+
+.LobbyKeyCode > h1 {
+  color: var(--color-3);
+}
+
+.LobbyGameInfo {
+  margin: 0 20px;
+}
+
+.UserIcon {
+  margin: auto;
+}
+
+.user-icon-name {
+  padding: 0px;
+  margin: 0 auto;
+}
+
+.UserSetup {
+  padding: 20px;
+  margin: 0 20px;
+}
+
+.UserSetup > .UserIcon > svg {
+  height: 6rem;
+  width: 6rem;
+  stroke-width: 10px;
+  padding: 0px;
+}
+
+.PickIcon {
+  max-width: 350px;
+  margin: 20px auto;
+}
+
+.PickColor {
+  max-width: 350px;
+  margin: auto;
+}
+
+.PickUsername {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type='text'] {
+  border-color: var(--color-1);
+}
+
+.lobby-card {
+  display: flex;
+  flex-direction: column;
+  width: 25ch;
+  margin: 0 10px;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  border: 2px lightgrey solid;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 8px;
+}
+
+.GameLobby {
+  display: flex;
+  flex-direction: row;
+}
+
+input[type='text'] {
+  margin: 10px;
+}
+
+.players-display {
+  max-width: 50ch;
+  max-height: 200px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-y: auto;
+}
+
+.MainMenu {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  padding-top: 30px;
+}
+
+.menu-card {
+  display: flex;
+  flex-direction: column;
+  width: 20ch;
+  padding: 4em 2em;
+  margin: 0 10px;
+  border-width: 5px;
+
+  display: flex;
+  justify-content: flex-start;
+}
+
+.menu-card:nth-of-type(1) {
+  border-color: var(--color-3);
+}
+
+.menu-card:nth-of-type(2) {
+  border-color: var(--color-1);
+}
+
+.menu-card:nth-of-type(3) {
+  border-color: var(--color-2);
+}
+
+hr {
+  width: 100%;
+  height: 5px;
+  border: none;
+  background: grey;
+}
+
+.JoinGame {
+  background: white;
+  padding: 2em 4em;
+  max-width: 50%;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.AlertBar {
+  position: fixed;
+  width: 100%;
+  height: 1.5em;
+}
+
+.alert-message {
+  color: grey;
+  z-index: 10;
+  opacity: 0;
+
+  -webkit-transform: translateY(-1000);
+  -moz-transform: translateY(-1000);
+  -o-transform: translateY(-1000);
+  transform: translateY(-1000);
+
+  -webkit-animation: alertAnimation ease-in-out 6s;
+  -moz-animation: alertAnimation ease-in-out 6s;
+  -o-animation: alertAnimation ease-in-out 6s;
+  animation: alertAnimation ease-in-out 6s;
+}
+
+@keyframes alertAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(-100);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(10);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(100);
+  }
+}
+@-o-keyframes alertAnimation {
+  0% {
+    opacity: 0;
+    -o-transform: translateY(-100);
+  }
+
+  50% {
+    opacity: 1;
+    -o-transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+    -o-transform: translateY(10);
+  }
+
+  100% {
+    opacity: 0;
+    -o-ttransform: translateY(100);
+  }
+}
+@-moz-keyframes alertAnimation {
+  0% {
+    opacity: 0;
+    -moz-transform: translateY(-100);
+  }
+
+  50% {
+    opacity: 1;
+    -moz-transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+    -moz-transform: translateY(10);
+  }
+
+  100% {
+    opacity: 0;
+    -moz-transform: translateY(100);
+  }
+}
+@-webkit-keyframes alertAnimation {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-100);
+  }
+
+  50% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+    -webkit-transform: translateY(10);
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(100);
+  }
+}
+
+.CreateNewGame > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 20px;
+}
+
+.GameStats,
+.GameChat {
+  min-height: 60vh;
+  max-height: 60vh;
+  width: 25ch;
+  max-width: 25ch;
+  padding: 15px 0;
+  margin: auto 10px;
+}
+
+.user-points {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: auto 2em;
+}
+
+.score-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  font-size: 12px;
+}
+
+.UserIcon .tiny {
+  height: 1em;
+  width: 1em;
+  border-radius: 10px;
+  justify-self: flex-start;
+}
+
+.scores-container {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.score-name {
+  display: flex;
+  align-content: center;
+  width: 100%;
+  height: 2em;
+  width: 100%;
+  overflow: auto;
+  margin: auto;
+}
+
+.score-row:nth-of-type(even) {
+  background: lightgrey;
+}
+
+.score-points,
+.score-rank {
+  width: 3em;
+  margin: auto 3px;
+}
+
+.tiny > svg {
+  height: 1.5em;
+  width: 1.5em;
+  stroke-width: 12px;
+}
+
+.large > svg {
+  height: 4em;
+  width: 4em;
+  stroke-width: 10px;
+}
+
+.messages-container {
+  height: 50vh;
+  max-height: 50vh;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.message {
+  border-bottom: 1px dashed lightGrey;
+  width: 100%;
+  font-size: 12px;
+}
+
+.message-username {
+  color: grey;
+  text-align: left;
+  margin: 0 5px;
+}
+
+.message-content {
+  text-align: right;
+  margin: 0 5px;
+}
+
+.message-form {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+}
+.message-form > input {
+  width: 17ch;
+  font-size: 14px;
+  padding: 5px;
+  margin: 2px;
 }

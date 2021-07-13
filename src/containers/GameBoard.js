@@ -1,104 +1,56 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-import SetCard from '../components/SetCard';
+import GameLobby from '../components/GameLobby';
+import GameOver from '../components/GameOver';
+import GameInPlay from './GameInPlay';
 
-export default function GameBoard({ boardCards, removeCardsFromGame }) {
-  const [selectedCards, setSelectedCards] = useState([]);
+const newUser = () => {
+  const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+  const iconId = Math.floor(Math.random() * 9) + 1;
+  return {
+    color: randomColor,
+    icon_id: iconId
+  };
+};
 
-  const toggleSelectedCard = card => {
-    if (isSelected(card)) {
-      setSelectedCards(selectedCards.filter(sCard => sCard.id !== card.id));
-    } else {
-      setSelectedCards([...selectedCards, card]);
+export default function GameBoard({ game, setAlert }) {
+  const [user, setUser] = useState(newUser());
+
+  const showGame = () => {
+    switch (game.state) {
+      case 'Game Over':
+        return <GameOver game={game} />;
+      case 'Game in progress':
+        if (!user?.id) {
+          return (
+            <GameLobby
+              game={game}
+              user={user}
+              setUser={setUser}
+              setAlert={setAlert}
+            />
+          );
+        }
+        return (
+          <GameInPlay
+            game={game}
+            setAlert={setAlert}
+            user={user}
+            setUser={setUser}
+          />
+        );
+      case 'Waiting for Players':
+      default:
+        return (
+          <GameLobby
+            game={game}
+            user={user}
+            setUser={setUser}
+            setAlert={setAlert}
+          />
+        );
     }
   };
 
-  const isSelected = card => {
-    return selectedCards.filter(sCard => sCard.id === card.id).length > 0;
-  };
-
-  const showBoardCards = () => {
-    return boardCards.map(card => {
-      return (
-        <SetCard
-          card={card}
-          key={card.id}
-          toggleSelectedCard={toggleSelectedCard}
-          isSelected={isSelected(card)}
-        />
-      );
-    });
-  };
-
-  const handleSelectedCards = () => {
-    if (selectedCards.length >= 3) {
-      if (checkIsSet()) {
-        setTimeout(() => {
-          removeCardsFromGame(selectedCards);
-        }, 500);
-      }
-      setTimeout(() => setSelectedCards([]), 500);
-    }
-  };
-
-  const checkIsSet = () => {
-    const cards = selectedCards;
-    const attributes = ['color', 'fill', 'count', 'shape'];
-
-    for (let i in attributes) {
-      //TODO: this is ugly, refactor
-      const attribute = attributes[i];
-      if (
-        cards[0][attribute] === cards[1][attribute] &&
-        cards[0][attribute] !== cards[2][attribute]
-      ) {
-        console.log('Incorrect attribute: ' + attribute);
-        return false;
-      }
-      if (
-        cards[0][attribute] !== cards[1][attribute] &&
-        cards[0][attribute] === cards[2][attribute]
-      ) {
-        console.log('Incorrect attribute: ' + attribute);
-        return false;
-      }
-      if (
-        cards[1][attribute] !== cards[0][attribute] &&
-        cards[1][attribute] === cards[2][attribute]
-      ) {
-        console.log('Incorrect attribute: ' + attribute);
-        return false;
-      }
-      if (
-        cards[1][attribute] === cards[0][attribute] &&
-        cards[1][attribute] !== cards[2][attribute]
-      ) {
-        console.log('Incorrect attribute: ' + attribute);
-        return false;
-      }
-      if (
-        cards[2][attribute] !== cards[1][attribute] &&
-        cards[2][attribute] === cards[0][attribute]
-      ) {
-        console.log('Incorrect attribute: ' + attribute);
-        return false;
-      }
-      if (
-        cards[2][attribute] === cards[1][attribute] &&
-        cards[2][attribute] !== cards[0][attribute]
-      ) {
-        console.log('Incorrect attribute: ' + attribute);
-        return false;
-      }
-    }
-    return true;
-  };
-
-  useEffect(() => {
-    if (selectedCards.length >= 3) {
-      handleSelectedCards();
-    }
-  }, [selectedCards]);
-
-  return <div className='GameBoard'>{showBoardCards()}</div>;
+  return <div className='GameBoard'>{showGame()}</div>;
 }

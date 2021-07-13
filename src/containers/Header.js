@@ -1,16 +1,15 @@
 import React from 'react';
 import Controls from '../components/Controls';
-import IconOne from '../components/IconOne';
-import IconTwo from '../components/IconTwo';
-import IconThree from '../components/IconThree';
-import EmployeeInfo from './EmployeeInfo';
+import IconOne from '../components/Icons/IconOne';
+import IconTwo from '../components/Icons/IconTwo';
+import IconThree from '../components/Icons/IconThree';
+import EmployeeInfo from '../containers/EmployeeInfo';
 
 export default function Header({
-  handleNewGame,
   game,
-  setCardsToShow,
+  user,
   handleHowToPlay,
-  points,
+  setGame,
   toggleColorblindMode
 }) {
   return (
@@ -42,14 +41,12 @@ export default function Header({
         <IconThree />
       </div>
       <div className='header-content'>
-        <EmployeeInfo points={points} />
         <div className='title-container'>
           <h1 className='title'>Order Up!</h1>
         </div>
         <Controls
-          handleNewGame={handleNewGame}
+          setGame={setGame}
           game={game}
-          setCardsToShow={setCardsToShow}
           handleHowToPlay={handleHowToPlay}
           toggleColorblindMode={toggleColorblindMode}
         />

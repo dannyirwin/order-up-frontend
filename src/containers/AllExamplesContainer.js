@@ -4,8 +4,8 @@ import exampleCards from '../exampleCards.js';
 
 export default function AllExamplesContainer() {
   const showExamples = examplesArr => {
-    return examplesArr.map(exampleCards => {
-      return <ExamplesContainer cards={exampleCards} />;
+    return examplesArr.map((exampleCards, i) => {
+      return <ExamplesContainer cards={exampleCards} key={i} />;
     });
   };
   return (
