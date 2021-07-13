@@ -562,6 +562,7 @@ input[type='text'] {
   display: flex;
   flex-direction: column;
   width: 25ch;
+  margin: 0 10px;
   padding: 20px;
 }
 
@@ -756,7 +757,7 @@ hr {
   width: 25ch;
   max-width: 25ch;
   padding: 15px 0;
-  margin: auto;
+  margin: auto 10px;
 }
 
 .user-points {
