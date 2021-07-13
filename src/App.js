@@ -18,7 +18,7 @@ function App() {
   const [showTutorial, setShowTutorial] = useState(false);
   const [colorblindMode, setColorblindMode] = useState(false);
   const [practiceMode, setPracticeMode] = useState(false);
-  const [alert, setAlert] = useState();
+  const [alerts, setAlerts] = useState([]);
 
   const createSubscription = gameId => {
     consumer.subscriptions.create(
@@ -38,11 +38,11 @@ function App() {
     setShowTutorial(!showTutorial);
   };
 
-  const handleAlert = alert => {
-    setAlert(alert);
+  const handleAlerts = newAlert => {
+    setAlerts([newAlert, ...alerts]);
     setTimeout(() => {
-      setAlert('');
-    }, 6000);
+      setAlerts(alerts.splice(0, -1));
+    }, 2000);
   };
 
   const joinGame = id => {
@@ -88,16 +88,16 @@ function App() {
         isPractice={practiceMode}
         goBack={togglePracticeMode}
       />
-      <AlertBar alert={alert} />
+      <AlertBar alerts={alerts} />
       {game?.board ? (
-        <GameBoard game={game} setAlert={handleAlert} />
+        <GameBoard game={game} handleAlerts={handleAlerts} />
       ) : practiceMode ? (
         <PracticeGame />
       ) : (
         <MainMenu
           joinGame={joinGame}
           handleHowToPlay={handleHowToPlay}
-          setAlert={handleAlert}
+          handleAlerts={handleAlerts}
           togglePracticeMode={togglePracticeMode}
         />
       )}

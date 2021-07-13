@@ -26,7 +26,7 @@ export default function HowToPlay({ handleHowToPlay }) {
         </p>
         <p>
           If you are stumped, you can add 3 cards (up to a total of 15) by
-          clicking the "Add 3 Cards" in the top.
+          clicking the "+ 3 More Cards" button in the top left of the board.
         </p>
         <h3>Good Luck!</h3>
         <AllExamplesContainer />

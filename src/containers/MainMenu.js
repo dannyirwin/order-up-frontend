@@ -8,7 +8,7 @@ import PracticeGame from './PracticeGame';
 export default function MainMenu({
   joinGame,
   handleHowToPlay,
-  setAlert,
+  handleAlerts,
   togglePracticeMode
 }) {
   const [currentPage, setCurrentPage] = useState('');
@@ -22,7 +22,7 @@ export default function MainMenu({
           <JoinGame
             setCurrentPage={setCurrentPage}
             joinGame={joinGame}
-            setAlert={setAlert}
+            handleAlerts={handleAlerts}
           />
         );
       default:

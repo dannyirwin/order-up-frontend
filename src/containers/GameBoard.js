@@ -13,7 +13,7 @@ const newUser = () => {
   };
 };
 
-export default function GameBoard({ game, setAlert }) {
+export default function GameBoard({ game, handleAlerts }) {
   const [user, setUser] = useState(newUser());
 
   const showGame = () => {
@@ -27,14 +27,14 @@ export default function GameBoard({ game, setAlert }) {
               game={game}
               user={user}
               setUser={setUser}
-              setAlert={setAlert}
+              handleAlerts={handleAlerts}
             />
           );
         }
         return (
           <GameInPlay
             game={game}
-            setAlert={setAlert}
+            handleAlerts={handleAlerts}
             user={user}
             setUser={setUser}
           />
@@ -46,7 +46,7 @@ export default function GameBoard({ game, setAlert }) {
             game={game}
             user={user}
             setUser={setUser}
-            setAlert={setAlert}
+            handleAlerts={handleAlerts}
           />
         );
     }

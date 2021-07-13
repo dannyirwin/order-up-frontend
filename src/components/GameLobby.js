@@ -5,7 +5,7 @@ import { updateGameToDB, postNewUserToDB } from '../utilities/fetchUtilities';
 import LobbyGameInfo from './LobbyGameInfo';
 import GameChat from './GameChat';
 
-export default function GameLobby({ game, user, setUser, setAlert }) {
+export default function GameLobby({ game, user, setUser, handleAlerts }) {
   const { id: gameId, key: gameKey } = game;
 
   const addUserToGame = e => {
@@ -22,7 +22,7 @@ export default function GameLobby({ game, user, setUser, setAlert }) {
 
   return (
     <div className='GameLobby'>
-      <LobbyKeyCode gameKey={gameKey} setAlert={setAlert} />
+      <LobbyKeyCode gameKey={gameKey} handleAlerts={handleAlerts} />
       {user.id ? (
         <LobbyGameInfo startGame={startGame} players={game.users} />
       ) : (

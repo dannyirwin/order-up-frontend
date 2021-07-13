@@ -6,7 +6,7 @@ import SetCard from '../components/SetCard';
 import GameStats from '../components/GameStats';
 import GameChat from '../components/GameChat';
 
-export default function GameInPlay({ game, user, setAlert, setUser }) {
+export default function GameInPlay({ game, user, handleAlerts, setUser }) {
   const { board, id } = game;
   const [selectedCards, setSelectedCards] = useState([]);
 
