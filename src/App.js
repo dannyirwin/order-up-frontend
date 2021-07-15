@@ -93,7 +93,7 @@ function App() {
       />
       <AlertBar alert={alert} />
       {game?.board ? (
-        <GameBoard game={game} handleAlerts={handleAlerts} />
+        <GameBoard game={game} handleAlerts={handleAlerts} setGame={setGame} />
       ) : practiceMode ? (
         <PracticeGame />
       ) : (

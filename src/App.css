@@ -765,6 +765,11 @@ hr {
   width: 4em;
 }
 
+.winner-icons-container {
+  display: flex;
+  flex-direction: row;
+}
+
 @media only screen and (max-width: 1450px) {
   button,
   p {

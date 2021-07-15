@@ -13,13 +13,12 @@ const newUser = () => {
   };
 };
 
-export default function GameBoard({ game, handleAlerts }) {
+export default function GameBoard({ game, handleAlerts, setGame }) {
   const [user, setUser] = useState(newUser());
-
   const showGame = () => {
     switch (game.state) {
       case 'Game Over':
-        return <GameOver game={game} />;
+        return <GameOver game={game} setGame={setGame} />;
       case 'Game in progress':
         if (!user?.id) {
           return (
