@@ -36,50 +36,24 @@ src="./src/images/OrdeUpPreview.gif" alt="Gif of game" height="300px">
 
 ## Code Snippets
 
-This is the code is used to generate and shuffle new decks of cards.
+This code checks weather or not three cards are a valid set.
 
 ```javascript
-const generateNewDeck = () => {
-  const deck = [];
-  const shapes = ['shape-1', 'shape-2', 'shape-3'];
-  const colors = ['color-1', 'color-2', 'color-3'];
-  const counts = [1, 2, 3];
-  const fills = ['fill-1', 'fill-2', 'fill-3'];
-  let cardId = 1;
-  shapes.forEach(shape => {
-    colors.forEach(color => {
-      counts.forEach(count => {
-        fills.forEach(fill => {
-          [
-            ...deck,
-            {
-              id: cardId,
-              color: color,
-              count: count,
-              shape: shape,
-              fill: fill
-            }
-          ];
-          cardId++;
-        });
-      });
-    });
-  });
-  return deck;
-};
+const checkIsSet = cards => {
+  const attributes = ['color', 'shape', 'fill', 'count'];
 
-const shuffleDeck = deck => {
-  var currentIndex = deck.length,
-    randomIndex;
-  while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-    [deck[currentIndex], deck[randomIndex]] = [
-      deck[randomIndex],
-      deck[currentIndex]
-    ];
+  for (let i in attributes) {
+    const atr = attributes[i];
+    const values = cards.map(card => card[atr]);
+
+    const isAllSame = new Set(values).size === 1;
+    const isAllUnique = new Set(values).size === values.length;
+
+    if (!isAllSame(values) && !isAllUnique(values)) {
+      return false;
+    }
   }
-  return deck;
+  return true;
 };
 ```
 
