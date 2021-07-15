@@ -50,4 +50,8 @@ const checkIsSet = cards => {
   return true;
 };
 
-export { generateDeck, shuffleDeck, checkIsSet };
+const gameProgress = game => {
+  return Math.floor((1 - (game.board.length + game.deckLength) / 81) * 100);
+};
+
+export { generateDeck, shuffleDeck, checkIsSet, gameProgress };

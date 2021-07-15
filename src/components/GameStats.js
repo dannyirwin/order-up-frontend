@@ -3,6 +3,7 @@ import React from 'react';
 import UserIcon from '../components/UserIcon';
 
 import { updateGameToDB } from '../utilities/fetchUtilities';
+import { gameProgress } from '../utilities/gameUtilities';
 
 export default function GameStats({ game, user }) {
   const nth = n => {
@@ -49,6 +50,9 @@ export default function GameStats({ game, user }) {
         <UserIcon user={user} size='large' />
         <div className='user-points'>
           <p>My Score: </p> <p>{user.points}</p>
+        </div>
+        <div className='user-points'>
+          <p>Game Progress: {gameProgress(game)}% </p>
         </div>
         <hr></hr>
         <p>Scoreboard</p>

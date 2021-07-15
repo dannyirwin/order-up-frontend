@@ -1,15 +1,16 @@
+import { gameProgress } from '../utilities/gameUtilities';
+
 export default function PublicGames({ joinGame, games }) {
   const showGames = () => {
     const showGameState = game => {
-      const gameProgress = Math.floor(
-        (1 - (game.board.length + game.deckLength) / 81) * 100
-      );
       switch (game.state) {
         case 'Waiting for Players':
           return <td className='status-waiting'>{game.state}</td>;
         case 'Game in progress':
           return (
-            <td className='status-playing'>{`Game Progress: ${gameProgress}%`}</td>
+            <td className='status-playing'>{`Game Progress: ${gameProgress(
+              game
+            )}%`}</td>
           );
         default:
           return null;
