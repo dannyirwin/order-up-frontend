@@ -39,12 +39,14 @@ const isAllUnique = array => {
 const checkIsSet = cards => {
   const attributes = ['color', 'shape', 'fill', 'count'];
 
-  attributes.forEach(atr => {
+  for (let i in attributes) {
+    const atr = attributes[i];
     const values = cards.map(card => card[atr]);
     if (!isAllSame(values) && !isAllUnique(values)) {
+      console.log(atr, 'invalid');
       return false;
     }
-  });
+  }
   return true;
 };
 

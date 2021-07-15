@@ -47,7 +47,7 @@
 
 .PracticeGame {
   width: auto;
-  margin-right: 30ch;
+  max-height: 60vh;
 }
 
 .game-cards-container {
@@ -59,7 +59,7 @@
   height: 60vh;
   max-height: 60vh;
   justify-content: center;
-  margin: auto;
+  margin: 0 auto;
 }
 
 .SetCard {
@@ -203,6 +203,7 @@ svg {
   margin: auto;
   padding: 1em;
   margin-top: 5vh;
+  overflow-y: auto;
 
   background: white;
   border-radius: 12px;
@@ -435,6 +436,7 @@ input[type='submit']:hover {
   position: absolute;
   color: grey;
   margin: 10px;
+  z-index: -10;
 }
 
 .Attribution > a {
@@ -772,7 +774,8 @@ hr {
 }
 
 .points-display {
-  padding: 30px;
+  padding: 15px;
+  width: 15ch;
 }
 
 .banner {
@@ -780,20 +783,20 @@ hr {
   width: 4em;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1450px) {
   button,
   p {
     font-size: 12px;
   }
 
   .SetCard {
-    width: 9em;
-    height: 6em;
+    width: 10em;
+    height: 7.5em;
   }
 
-  svg {
-    height: 1.7em;
-    width: 1.7em;
+  .SetCard > svg {
+    height: 2em;
+    width: 2em;
     border-width: 3px;
     border-radius: 7px;
   }
@@ -814,8 +817,18 @@ hr {
     width: auto;
     max-width: 70vw;
   }
+}
 
-  .PracticeGame {
-    margin-right: 15ch;
+@media only screen and (max-width: 1150px) {
+  .SetCard {
+    width: 8em;
+    height: 5.5em;
+  }
+
+  .SetCard > svg {
+    height: 1.5em;
+    width: 1.5em;
+    border-width: 3px;
+    border-radius: 7px;
   }
 }

@@ -41,8 +41,8 @@ function App() {
   const handleAlerts = newAlert => {
     setAlerts([newAlert, ...alerts]);
     setTimeout(() => {
-      setAlerts(alerts.splice(0, -1));
-    }, 2000);
+      setAlerts(alerts.slice(0, -1));
+    }, 4000);
   };
 
   const joinGame = id => {

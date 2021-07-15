@@ -5,7 +5,7 @@ export default function HowToPlay({ handleHowToPlay }) {
     <div className='disabled-background'>
       <div className='HowToPlay'>
         <h3>Welcome to the Cafe!</h3>
-        <p>Orders are Up and its your job to get them to the customers.</p>
+        <p>Orders are up and its your job to get them to the customers.</p>
         <p> ...But there is a catch...</p>
         <p>
           At this cafe, customers like to order in unusual patterns and you'll
@@ -13,7 +13,7 @@ export default function HowToPlay({ handleHowToPlay }) {
           customers.
         </p>
         <p>
-          An order consists of 3 card. Each card has four attributes: color,
+          An order consists of 3 cards. Each card has four attributes: color,
           pattern, number of items, and item type.
         </p>
         <p>

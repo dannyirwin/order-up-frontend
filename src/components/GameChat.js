@@ -6,7 +6,7 @@ export default function GameChat({ messages, gameId, userId }) {
   const showMessages = () => {
     return messages.map(message => {
       return (
-        <div className='message'>
+        <div className='message' key={message.id}>
           <p className='message-username'>{message.username}</p>
           <p className='message-content'>{message.content}</p>
         </div>

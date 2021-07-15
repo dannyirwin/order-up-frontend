@@ -58,9 +58,11 @@ export default function PracticeGame() {
   };
 
   const handleSelectedCards = () => {
+    console.log(checkIsSet(selectedCards));
     if (checkIsSet(selectedCards)) {
       setDiscardPile([...discardPile, selectedCards]);
       setPoints(points + 1);
+
       removeCardsFromDeck(selectedCards);
       handleLoopingDeck();
     }
@@ -102,6 +104,7 @@ export default function PracticeGame() {
       </div>
 
       <div className='game-cards-container'> {showCards()} </div>
+      <div className='points-display'></div>
     </div>
   );
 }
