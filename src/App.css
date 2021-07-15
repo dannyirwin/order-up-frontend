@@ -630,37 +630,19 @@ hr {
   position: fixed;
   width: 100%;
   height: 1.2em;
+  opacity: 0.7;
 }
 
-.alert-message {
+.error {
   color: var(--color-2);
-  z-index: 10;
-
-  opacity: 1;
 }
 
-@-webkit-keyframes fadeinout {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+.success {
+  color: var(--color-1);
 }
 
-@keyframes fadeinout {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+.generic {
+  color: var(--color-3);
 }
 
 .CreateNewGame > div {

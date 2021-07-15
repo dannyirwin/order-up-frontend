@@ -68,6 +68,7 @@ export default function PracticeGame() {
     }
     setTimeout(() => {
       setSelectedCards([]);
+      setCardsToShow(12);
     }, 500);
   };
 

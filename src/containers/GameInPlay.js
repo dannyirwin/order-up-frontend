@@ -5,6 +5,8 @@ import { updateGameToDB } from '../utilities/fetchUtilities';
 import SetCard from '../components/SetCard';
 import GameStats from '../components/GameStats';
 import GameChat from '../components/GameChat';
+import { checkIsSet } from '../utilities/gameUtilities';
+import generateAlert from '../utilities/generateAlert';
 
 export default function GameInPlay({ game, user, handleAlerts, setUser }) {
   const { board, id } = game;
@@ -47,6 +49,11 @@ export default function GameInPlay({ game, user, handleAlerts, setUser }) {
           setUser(respData.user);
         }
       });
+      if (checkIsSet(selectedCards)) {
+        handleAlerts(generateAlert('positive'), 'success');
+      } else {
+        handleAlerts(generateAlert('negative'), 'error');
+      }
       setSelectedCards([]);
     }
   };
