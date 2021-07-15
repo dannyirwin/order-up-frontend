@@ -28,6 +28,8 @@ function App() {
       },
       {
         received: gameData => {
+          console.log('object');
+          handleUserScored(gameData);
           setGame(gameData);
         }
       }
@@ -76,6 +78,29 @@ function App() {
 
   const togglePracticeMode = () => {
     setPracticeMode(!practiceMode);
+  };
+
+  const findUserWhoScored = newGame => {
+    console.log('finding');
+    if (game?.users && newGame?.users) {
+      const newUsers = newGame.users;
+      const userWhoScored = newUsers.filter(newUser => {
+        const oldUser = game.users.filter(oldUser => {
+          return oldUser.id === newUser.id;
+        })[0];
+        console.log(oldUser);
+        return newUser.points > oldUser.points;
+      });
+      return userWhoScored;
+    }
+  };
+
+  const handleUserScored = newGame => {
+    const user = findUserWhoScored(newGame);
+    console.log(user);
+    if (user) {
+      handleAlerts(`${user.name} just completed and Order`);
+    }
   };
 
   return (
