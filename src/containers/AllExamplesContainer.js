@@ -1,6 +1,6 @@
 import ExamplesContainer from './ExamplesContainer';
 
-import exampleCards from '../exampleCards.js';
+import exampleCards from '../utilities/exampleCards';
 
 export default function AllExamplesContainer() {
   const showExamples = examplesArr => {

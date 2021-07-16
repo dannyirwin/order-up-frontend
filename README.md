@@ -1,5 +1,7 @@
 # Order Up!
 
+[You can play Order Up right now!](https://dannyirwin.github.io/order-up-frontend/)
+
 Find the patterns and play with friends online! This is the front end of a
 project to go with
 [this backend.](https://github.com/dannyirwin/order-up-backend)
@@ -13,8 +15,11 @@ Color, Fill/Shading, Number of items, and Item Type. A valid order consists of 3
 cards where each attribute across the cards is either all teh same or all
 different.
 
-This is the first full backend I've built and it incorporates ActionCable to
-support live online multiplayer via websockets.
+This project began as an introduction project to web sockets. It is a full
+featured multiplayer card game with in-game chat, avatar customization, and
+matchmaking.
+
+## Screenshots
 
 <img src="./src/images/ValidExamples.png" alt="Valid Examples" height="300px"><img
 src="./src/images/InvalidExamples.png" alt="Invalid Examples" height="300px">
@@ -29,14 +34,22 @@ src="./src/images/OrdeUpPreview.gif" alt="Gif of game" height="300px">
 
 ## Features
 
-- Full game cycle: Games persist over multiple sessions, can start new games,
-  and handles all logic required to play.
-- Online multiplayer updates across all users games when changes are made
-- Colorblind Mode for accessability.
+- Full online multiplayer experience: Games update in real time.
+- Matchmaking: Users can host a public or private game or join one in a game
+  lobby from available games or using a unique code.
+- In game text chat and live score keeping.
+- Practice mode is single player and has a never-ending deck of cards.
+- Avatar customization.
 
 ## Code Snippets
 
-This code checks weather or not three cards are a valid set.
+This code checks weather or not three cards are a valid set. Although the all
+game logic is normally handled exclusively by the back end, the addition of an
+offline practice mode called for a function that can evaluate valid card
+selections. Rather than manually comparing each attribute on each card, this
+code reduces each attribute across all three cards to a Set. Because a Set only
+contains unique value, it can be used to determine if all the initial values are
+unique or all distinct. If not, then it is not a valid set.
 
 ```javascript
 const checkIsSet = cards => {
@@ -56,16 +69,6 @@ const checkIsSet = cards => {
   return true;
 };
 ```
-
-## Feature Wishlist
-
-- While the app is currently deployed on Heroku, the there are still problems
-  upgrading to websockets
-- User Sign-in and authentication
-- User can host a new game with a unique ID or us and ID to specify which game
-  to join.
-- In-game text chat.
-- Store long term game data for leaderboards etc.
 
 ## Reach out
 
