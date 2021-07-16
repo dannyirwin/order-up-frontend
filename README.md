@@ -62,7 +62,7 @@ const checkIsSet = cards => {
     const isAllSame = new Set(values).size === 1;
     const isAllUnique = new Set(values).size === values.length;
 
-    if (!isAllSame(values) && !isAllUnique(values)) {
+    if (!isAllSame && !isAllUnique) {
       return false;
     }
   }

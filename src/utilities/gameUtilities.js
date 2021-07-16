@@ -31,12 +31,12 @@ const shuffleDeck = deck => {
 const checkIsSet = cards => {
   const attributes = ['color', 'shape', 'fill', 'count'];
 
-  for (let i in attributes) {
-    const atr = attributes[i];
+  for (let index in attributes) {
+    const atr = attributes[index];
     const values = cards.map(card => card[atr]);
     const isAllSame = new Set(values).size === 1;
     const isAllUnique = new Set(values).size === values.length;
-    if (!isAllSame(values) && !isAllUnique(values)) {
+    if (!isAllSame && !isAllUnique) {
       return false;
     }
   }
