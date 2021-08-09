@@ -28,7 +28,6 @@ function App() {
       },
       {
         received: gameData => {
-          console.log('object');
           handleUserScored(gameData);
           setGame(gameData);
         }
