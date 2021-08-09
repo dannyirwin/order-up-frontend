@@ -3,6 +3,8 @@ import Controls from '../components/Controls';
 import PracticeControls from '../components/PracticeControls';
 import HeaderBackground from './HeaderBackground';
 
+import IconOne from '../components/Icons/IconOne';
+
 export default function Header({
   game,
   handleHowToPlay,

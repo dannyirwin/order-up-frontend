@@ -759,10 +759,9 @@ hr {
   width: 15ch;
 }
 
-.banner {
+.banner-icon {
   height: 3em;
   width: 3em;
-  background: red;
   fill: black;
   stroke: black;
 }

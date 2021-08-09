@@ -9,9 +9,9 @@ export default function HeaderBackground() {
     for (let i = 0; i < 10; i++) {
       icons = [
         ...icons,
-        <IconOne className='banner' key={key} />,
-        <IconTwo className='banner' key={key + 1} />,
-        <IconThree className='banner' key={key + 2} />
+        <IconOne className='banner-icon' key={key} />,
+        <IconTwo className='banner-icon' key={key + 1} />,
+        <IconThree className='banner-icon' key={key + 2} />
       ];
       key += 3;
     }
