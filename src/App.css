@@ -760,8 +760,8 @@ hr {
 }
 
 .banner-icon {
-  height: 3em;
-  width: 3em;
+  min-height: 3em;
+  min-width: 3em;
   fill: black;
   stroke: black;
 }
